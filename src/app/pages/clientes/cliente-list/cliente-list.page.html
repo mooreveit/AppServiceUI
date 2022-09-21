@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Clientes {{ userConectado }} </ion-title>
+  </ion-toolbar>
+  <ion-button color="primary" expand="full"
+  (click)="onSalirSinArgumentos()">
+  Salir sin argumentos
+</ion-button>
+<ion-button  color="secondary" expand="full"
+(click)="onSalirConArgumentos()">
+  Salir con argumentos
+</ion-button>
+<br>
+  <ion-item>
+  
+    <ion-searchbar (ionChange)="onChangeRC($event)" placeholder="Codigo" debounce=800></ion-searchbar>
+  
+  </ion-item>
+</ion-header>
+
+<ion-content>
+ <!-- List of Text Items *ngFor="let item of mtrClienteDto"-->
+
+
+
+ <ion-list >
+    <ion-item *ngFor="let item of mtrClienteDto">
+      <ion-label>
+        <h3 text-capitalize> {{ item.codigo }}-{{ item.nombre }}</h3>
+        <p>{{ item.no_Reg_Tribut }}</p>
+       </ion-label>
+     
+      
+    
+    </ion-item>
+ </ion-list>
+
+
+   <!--<ion-infinite-scroll threshold='15%' (ionInfinite)=loadMore($event)>
+      <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="Cargando...">
+  
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>-->
+</ion-content>

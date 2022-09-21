@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar color='primary'>
+    <ion-title> {{titulo}} </ion-title>
+
+    <button ion-button (click)="goListDetalleCotizacion()">
+      <ion-back-button defaultHref="" text=""></ion-back-button>
+    </button>
+
+  </ion-toolbar>
+
+  <ion-item>
+    <label>
+
+      <p *ngIf="mensaje!=''">
+        {{mensaje}}
+      </p>
+    </label>
+  </ion-item>
+
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="form" novalidate>
+
+    <!-- Id Ingrediente-->
+    <ion-item *ngIf="false">
+      <ion-label position="fixed">Id</ion-label>
+      <ion-input type="number" formControlName="id"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Codigo</ion-label>
+      <ion-input type="text" formControlName="code"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Descripcion</ion-label>
+      <ion-input type="text" formControlName="description"></ion-input>
+    </ion-item>
+
+    <ion-label>Costo:</ion-label>
+    <app-number-input [precision]="precision" [amount]="amountString" [currencyType]="'USD'"
+      (amountEntered)="amountChanged($event)">
+    </app-number-input>
+
+    <ion-item *ngIf="false">
+      <ion-label position="floating">Costo</ion-label>
+      <ion-input type="text" formControlName="cost"></ion-input>
+    </ion-item>
+
+    <!-- Id Unidad Oculto-->
+    <ion-item *ngIf="false">
+      <ion-label position="fixed">Id Unidad</ion-label>
+      <ion-input type="number" formControlName="appUnitId"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" formControlName="unidad" placeholder="Buscar unidad de medida..." readonly>
+      </ion-input>
+      <ion-button (click)="onBuscarUnidad()">
+        <ion-icon name="search-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <!-- Combo Moneda -->
+
+    <ion-item>
+      <ion-label position="floating">Moneda Primaria:</ion-label>
+      <ion-select formControlName="prymaryMtrMonedaId" (ionChange)="onChangeMoneda($event)">
+        <ion-select-option *ngFor="let item of listMtrTipoMonedasDto" [value]="item.id">
+          {{item.descripcion}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Moneda Secundaria:</ion-label>
+      <ion-select formControlName="secundaryMtrMonedaId" (ionChange)="onChangeMonedaSecundary($event)">
+        <ion-select-option *ngFor="let item of listMtrTipoMonedasDto" [value]="item.id">
+          {{item.descripcion}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Grabar -->
+    <ion-button [disabled]="(!form.valid)" *ngIf="flagInsert" type="button" shape="round" color="success" float-right
+      (click)="insertCotizacion()">
+      <ion-icon name="checkmark-circle" style="color:black;font-weight:900;font-size: 2em;"></ion-icon>
+      Crear
+    </ion-button>
+
+    <ion-button [disabled]="(!form.valid)" *ngIf="flagUpdate" type="button" shape="round" color="success" float-right
+      (click)="UpdateCotizacion()">
+      <ion-icon name="checkmark-circle" style="color:black;font-weight:900;font-size: 2em;"></ion-icon>
+      Guardar
+    </ion-button>
+
+
+  </form>
+</ion-content>

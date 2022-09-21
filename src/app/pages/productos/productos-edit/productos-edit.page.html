@@ -1,0 +1,197 @@
+<ion-header>
+  <ion-toolbar color='primary'>
+
+      <!-- Botonos auxiliares -->
+      <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+      </ion-buttons>
+
+      <ion-title>{{titiloSuperiorComponente}} </ion-title>
+
+  </ion-toolbar>
+  <ion-row>
+
+    <ion-col *ngIf="_guardando">
+      <div class="ion-text-center">
+
+        <h3>Guardando .........</h3>
+
+      </div>
+    </ion-col>
+
+  </ion-row>
+</ion-header>
+
+<ion-content>
+
+  <form [formGroup]="form" novalidate>
+
+        <!-- Input Code -->
+
+        <ion-item>
+          <ion-label for="code" position="floating">Code:</ion-label>
+          <ion-input formControlName="code" ></ion-input>
+        </ion-item>
+  
+        <!-- Input externalCode -->
+
+        <ion-item>
+          <ion-label for="externalCode" position="floating">externalCode:</ion-label>
+          <ion-input formControlName="externalCode" ></ion-input>
+        </ion-item>
+
+        <!-- Input Description 1 -->
+
+        <ion-item>
+          <ion-label for="description1" position="floating">Description1</ion-label>
+          <ion-input formControlName="description1" ></ion-input>
+        </ion-item>
+        
+        <!-- Input Description 2 -->
+
+        <ion-item>
+          <ion-label for="description2" position="floating">Description2</ion-label>
+          <ion-input formControlName="description2" ></ion-input>
+        </ion-item>
+
+        <!-- Precio x unidad  -->
+
+        <ion-item>
+          <ion-label position="stacked">Precio</ion-label>
+          <ion-input type="number" formControlName="precioproducto"></ion-input>
+        </ion-item>
+
+        <!-- Buscador de unidades venta -->
+
+        <ion-item>
+          <label for="unidad" position="floating">UnitVenta:</label>
+          <ion-input type="text" formControlName="unidadventa"></ion-input>
+          <ion-button (click)="onBuscarUnidadVenta()">
+            <ion-icon name="search-outline"></ion-icon>
+          </ion-button>
+        </ion-item>
+
+        <!-- Buscador de unidades Produccion -->
+
+        <ion-item>
+          <label for="unidad" position="floating">UnitProduc:</label>
+          <ion-input type="text" formControlName="unidadproduccion"></ion-input>
+          <ion-button (click)="onBuscarUnidadProduccion()">
+            <ion-icon name="search-outline"></ion-icon>
+          </ion-button>
+        </ion-item>
+
+        <!-- Combo Moneda Primaria -->
+
+        <ion-item>
+          <ion-label position="floating">MonedaPri:</ion-label>
+          <ion-select formControlName="idMonedaPrimaria" (ionChange)="onChangeMonedaPrimaria($event)">
+            <ion-select-option *ngFor="let item of listMtrTipoMonedasDto" [value]="item.id">
+              {{item.descripcion}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <!-- Combo Moneda Secudaria -->
+
+        <ion-item>
+
+            <ion-label position="floating">MonedaSec:</ion-label>
+          
+            <ion-select formControlName="idMonedaSecundaria" (ionChange)="onChangeMonedaSecundaria($event)">
+          
+                <ion-select-option *ngFor="let item of listMtrTipoMonedasDto" [value]="item.id">
+          
+                    {{item.descripcion}}
+          
+                </ion-select-option>
+          
+            </ion-select>
+        
+        </ion-item>
+
+        <!-- Combo Subcategoria -->
+
+        <ion-item>
+        
+            <ion-label position="floting">SubCategoria:</ion-label>
+        
+            <ion-select formControlName="subCategoriaId" [(ngModel)]="_subCategoryid" (ionChange)="onChangeSubCategoriaId($event)">
+
+                <ion-select-option *ngFor="let item of appSubcategoryGetDto" [value]="item.id">
+              
+                    {{item.description}}
+            
+                </ion-select-option>
+          
+            </ion-select>
+        
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Cantidad Fija?</ion-label>
+          <ion-checkbox formControlName="validadCantidadFija"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Cantidad Fija</ion-label>
+          <ion-input type="number" formControlName="cantidadFija"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Cantidad Minima</ion-label>
+          <ion-input type="number" formControlName="cantidadMinima"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Tipo Calculo:</ion-label>
+          <ion-select formControlName="tipoCalculo" >
+            <ion-select-option *ngFor="let item of tipoCalculos" [value]="item.id">
+              {{item.descripcion}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+  
+  </form>
+ <!--
+  <p>
+    Form Status: {{ form.value | json }}
+  </p>
+
+  
+  <p>
+    Form Status: {{ form.status }}
+  </p> -->
+
+
+  
+  <ion-button *ngIf="flagInsert" (click)="insertProducto()" expand="full" shape="round">
+    Grabar Producto
+   </ion-button>
+
+   <ion-button *ngIf="flagUpdate" (click)="updateProducto()" expand="full" shape="round">
+    Actualizar Producto
+   </ion-button>
+
+    <!-- PARA SUBIR UNA IMAGEN Y ASOCIARLA AL PRODUCTO -->
+  
+    <ion-label *ngIf="!subirImagen">
+        <input #selector type="file" id="file-select" (change)="selectProductImage($event)" style="display:none;" />    
+    </ion-label>
+    
+    <ion-label>      
+    
+        <!-- Boton Seleccionar Imagen -->
+        <ion-button id="btnSeleccionarImagen" expand="full" shape="round" color="primary" *ngIf="!subirImagen">
+            <label for="file-select">Seleccionar una Imágen (.PNG)</label>
+        </ion-button>
+    
+        <!-- Imagen Seleccionada -->
+        <ion-img [src]="base64"></ion-img>
+
+        <!-- Boton Subir Imagen -->
+        <ion-button id="btnSubitImagen" (click)="uploadProductImage()" expand="full" shape="round" color="success" *ngIf="subirImagen">
+            <label for="file-select">Subir Imágen</label>
+        </ion-button>
+    
+    </ion-label>
+
+</ion-content>

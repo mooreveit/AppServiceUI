@@ -1,0 +1,42 @@
+<ion-header>
+    <ion-toolbar color='primary'>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/" text=""></ion-back-button>
+        </ion-buttons>
+        <ion-title>Postergar Cotización</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <app-cotizacion-resumen [cotizacion]="cotizacion"></app-cotizacion-resumen>
+
+    <ion-item>
+        <ion-label>
+            Fecha
+        </ion-label>
+        <ion-datetime [(ngModel)]="cotizacion.fechaPostergada" (ngModelChange)="dateChanged()" displayFormat="D MMM YYYY" min="2020" max="2099" value="2020-12-11"></ion-datetime>
+     </ion-item>
+    
+    <ion-item>
+        <ion-label position="stacked">
+            Observaciones
+        </ion-label>        
+        <ion-textarea rows="7" [(ngModel)]="cotizacion.observacionPostergar" placeholder="Ingrese aqui la razón de la postergación.">
+        </ion-textarea>
+    </ion-item>    
+     
+    <ion-row>
+
+        <ion-col col-12 style="text-align:center;">
+            
+            <ion-button shape="round" color="success" (click)="onGrabar()">
+                <ion-icon name="checkmark-circle"></ion-icon>
+                Grabar
+            </ion-button>
+
+        </ion-col>   
+      
+    </ion-row>
+
+</ion-content>

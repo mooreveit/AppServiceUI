@@ -1,0 +1,108 @@
+<ion-header>
+  <ion-toolbar color='primary'>
+    <!-- Boton principal del menu -->
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <!-- Botonos auxiliares -->
+    <ion-buttons slot="end">
+      <!-- Refrescar lista  -->
+      <ion-button (click)="refresh()">
+        <ion-icon name="refresh"></ion-icon>
+      </ion-button>
+      <!-- añadir cotizacion -->
+      <ion-button (click)="onClickAdd()">
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>Cotizaciones</ion-title>
+  </ion-toolbar>
+
+
+  <ion-item>
+    <ion-col>
+      <ion-label>Desde</ion-label>
+      <ion-datetime presentation="date" [(ngModel)]="fechaDesde"></ion-datetime>
+    </ion-col>
+    <ion-col>
+      <ion-label>Hasta</ion-label>
+      <ion-datetime presentation="date" [(ngModel)]="fechaHasta"></ion-datetime>
+    </ion-col>
+    <ion-col>
+        <ion-label>Registros:</ion-label>
+        <ion-select  (ionChange)="optionsReg($event)" >
+        <ion-select-option *ngFor="let item of listReg" [value]="item">{{item}}</ion-select-option>
+    </ion-select>
+    </ion-col>
+  </ion-item>
+
+
+  <br>
+  <ion-item> 
+
+    <ion-searchbar 
+    [(ngModel)]="searchText"
+    (ionChange)="onChangeSearchText($event)" placeholder="IdCliente-Nombre Ciente- Vendedor - Cotizacion - Orden"
+      debounce=800></ion-searchbar>
+
+  </ion-item>
+
+  <ion-row>
+    
+    <ion-col *ngIf="_cargando">
+      <div class="ion-text-center">
+       
+        <h3>Cargando datos.........</h3>
+
+      </div>
+    </ion-col>
+
+  </ion-row>
+
+  
+  
+
+
+</ion-header>
+
+<ion-content>
+
+  <!-- <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher> -->
+
+  <!-- listado de cotizaciones  -->
+  <ion-grid>
+    <ion-row>
+      <ion-col size-lg="3" size-md="3" size-sm="3" size="12" *ngFor="let cotizacion of appGeneralQuotesGetDtoArray">
+        <ion-card (click)="presentActionSheet(cotizacion)" [class]="cotizacion.claseCss">
+         <ion-card-header color="light">
+            <ion-item color="light" lines="none">
+              <p> Cotizacion: {{ cotizacion.cotizacion }} </p>
+            </ion-item>
+           
+          </ion-card-header>
+         
+          <ion-card-content class="ion-margin-top"  >
+            <p>   {{cotizacion.mtrClienteDto.descripcion}} </p>
+            <p>  <b> Estatus: </b> {{ cotizacion.appStatusQuoteGetDto.descripcion }} </p> 
+            <p>  <b> Fecha : </b> {{ cotizacion.fechaString }} </p>
+            <p>  <b> items: </b> {{cotizacion.appDetailQuotesGetDto.length}} {{cotizacion.productosCotizados}}</p>
+            <p *ngIf="cotizacion.orden>0">  <b> Orden: </b> {{cotizacion.orden}}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+   
+
+   
+
+  </ion-grid>
+
+
+</ion-content>
+

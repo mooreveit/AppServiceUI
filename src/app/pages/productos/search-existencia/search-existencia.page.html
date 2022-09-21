@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar color='primary'>
+
+      <!-- Boton principal del menu -->
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+  
+      <!-- Botonos auxiliares -->
+      <ion-buttons slot="end">
+        
+        <ion-button (click)="refresh()">
+          <ion-icon name="refresh"></ion-icon>
+        </ion-button>
+
+       
+
+      </ion-buttons>
+
+      <ion-title>ProductosList</ion-title>
+
+  </ion-toolbar>
+
+  <ion-row>
+
+    <ion-col *ngIf="showLoading">
+      <div class="ion-text-center">
+
+        <h3>Cargando .........</h3>
+
+      </div>
+    </ion-col>
+
+  </ion-row>
+</ion-header>
+
+<ion-content>
+ 
+  <ion-list>
+ 
+ 
+  
+   <div >
+    <ion-searchbar (ionChange)="onChangeSearchText($event)" placeholder="Buscar Producto" debounce=800>
+
+    </ion-searchbar>
+   
+
+    <ion-item-sliding *ngFor="let product of appProductsGetDto">
+
+      <ion-item >
+
+        <img tyle="float: left; padding: 15px 20px 10px 20px;" src="{{product.link}}">
+  
+        <ion-label style="padding-left:20px;">
+          <p>   {{ product.code }} </p>
+          <p>   {{ product.description1 }} </p>
+          <p>   {{ product.description2 }} </p>
+         
+          <p>   Existencia:{{product.existencia  }} </p>
+          <p>   Backlog:{{product.cajasProgramadas  }} </p>
+          <p>   Disponible:{{product.disponible  }} </p>
+          
+          <br>
+        </ion-label>
+       
+      </ion-item>
+
+      
+
+
+    </ion-item-sliding>
+   </div>
+   
+
+
+  </ion-list> 
+
+</ion-content>
+

@@ -1,0 +1,260 @@
+<ion-header>
+  <ion-toolbar color='primary'>
+
+      <!-- Boton principal del menu -->
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+  
+      <!-- Botonos auxiliares -->
+      <ion-buttons slot="end">
+        
+        <ion-button (click)="refresh()">
+          <ion-icon name="refresh"></ion-icon>
+        </ion-button>
+
+       
+
+      </ion-buttons>
+
+      <ion-title>Consulta de Precios</ion-title>
+
+  </ion-toolbar>
+
+  <ion-row>
+
+    <ion-col *ngIf="showLoading">
+      <div class="ion-text-center">
+
+        <h3>Cargando .........</h3>
+
+      </div>
+    </ion-col>
+
+  </ion-row>
+</ion-header>
+
+<ion-content>
+ 
+  <ion-list>
+    <div class="containerCardNew">
+      
+        <ion-card class="containerCardNew">
+          <form [formGroup]="form" novalidate (ngSubmit)="save($event)">
+            <ion-item>
+             <!-- <label for="descripcionMunicipio" position="floating">Municipio:</label> -->
+             <!-- <ion-label style="align-items: left" class="bold">Municipio Entregar:</ion-label> -->
+             <ion-input type="text" formControlName="descripcionMunicipio"  placeholder="Buscar Municipio a Entregar"></ion-input>
+             <ion-button (click)="onBuscarMunicipio()" >
+               <ion-icon name="search-outline"></ion-icon>
+             </ion-button>
+            </ion-item>
+            <ion-item>
+              <!-- <ion-label style="align-items: left" class="bold">Subcategoria:</ion-label> -->
+               <ion-select style="width: 500px" formControlName="subCategoriaId" [(ngModel)]="_subCategoryid" (ionChange)="onChangeSubCategoriaId($event)" placeholder="Select Categoria">
+                
+       
+                 <ion-select-option  *ngFor="let item of appSubcategoryGetDto" [value]="item.id">
+             
+                     {{item.description}}
+             
+                 </ion-select-option>
+         
+               </ion-select>
+             </ion-item>
+             <div *ngIf="appProduct">
+                <ion-item class="small-list" *ngIf="false">
+                  <ion-input type="text" formControlName="unidad" readonly >
+                  </ion-input>
+               </ion-item>
+               <ion-item>
+                <ion-label style="align-items: left" class="bold">{{appProduct.description1}} - {{appProduct.code}} </ion-label>
+               </ion-item>
+               
+             
+           
+               <!-- Medidas -->
+               <ion-row *ngIf="this.appProduct!= null  && this.appProduct.tipoCalculo==1">
+                 <!-- Basica-->
+                 <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                       <ion-item>
+                               <ion-label style="align-items: left" class="bold">Basica:</ion-label>
+       
+                               <input  inputmode="numeric" style="display: inline-block;text-align: left;" currencyMask formControlName="medidaBasica"
+                               [options]="{ prefix: '', thousands: '.', decimal: ',', align: 'left',precision: 2}"
+                               (ngModelChange)="medidaBasicaChanged($event)" class="inputValue"/>
+                       </ion-item>
+                  </ion-col>
+                  <!-- Opuesta-->
+                 <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                   <ion-item>
+                           <ion-label style="align-items: left" class="bold">Opuesta:</ion-label>
+       
+                           <input  
+                           inputmode="numeric"
+                           style="display: inline-block;text-align: left;" 
+                           currencyMask formControlName="medidaOpuesta"
+                           [options]="{ prefix: '', thousands: '.', decimal: ',', align: 'left',precision: 2}"
+                           (ngModelChange)="medidaOpuestaChanged($event)" class="inputValue"/>
+                   </ion-item>
+                 </ion-col>
+               </ion-row>
+               <ion-row>
+                                      
+              
+               
+                
+                 <!-- Cantidad Solicitada-->
+                 <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                     <ion-item>
+                      <label style="align-items: left" class="bold">Cant {{appProductConversionGetDto.appUnitsAlternativaDescription}}
+                        <input  
+                        style="display: inline-block;text-align: left;" 
+                        inputmode="numeric" 
+                        currencyMask formControlName="cantidadSolicitada"
+                        [options]="{ prefix: '', thousands: '.', decimal: ',', align: 'left',precision: 0}"
+                        (ngModelChange)="cantidadSolicitadaChanged($event)" 
+                        class="inputValue">
+                      </label>
+                     </ion-item>
+                 </ion-col>
+                 <!-- Cantidad -->
+                 <ion-col size-lg="6" size-md="6" size-sm="6" size="12">
+                     <ion-item>
+                      <label style="align-items: left" class="bold">Cant {{appProductConversionGetDto.appUnitsBaseDescription}}
+                        <input 
+                          style="display: inline-block;text-align: left;" 
+                          inputmode="numeric"
+                          currencyMask formControlName="cantidad"
+                          [options]="{ prefix: '', thousands: '.', decimal: ',', align: 'left',precision: 3}"
+                          readonly="true"
+                          class="inputValue" />
+                      </label>
+                     </ion-item>
+                 </ion-col> 
+                 <ion-col size-lg="12" size-md="12" size-sm="12" size="12">
+                    
+                   <ion-item >
+                      <p class="listatasa">
+                          {{mensaje}}
+                      </p>
+                       <ion-label class="bold" *ngIf="precioMasFlete>0">
+                           <p class="listatasa">
+                               Precio US$:({{generalService.maskFloat(precioMasFlete,2)}}) TOTAL: {{generalService.maskFloat(form.get('total').value,2) }}
+                           </p>
+                           
+                       </ion-label>
+                   </ion-item>
+               </ion-col>
+             </ion-row>
+            </div> 
+       
+          </form>
+        </ion-card>
+      
+       
+    </div>
+     
+    
+  
+<div *ngIf="_subCategoryid!=2">
+  <ion-grid>
+    <ion-row>
+        <ion-col size-lg="4" size-md="4" size-sm="12" size="12">
+            <ion-item>
+              <p *ngIf="listaVariablesAgrupado.length>0">Caracteristicas</p>
+            </ion-item>
+             
+            <ion-item *ngFor="let variable of listaVariablesAgrupado" >
+              
+                <ion-label  style="font-size: 14px;padding: 0px;"  [ngStyle]="variable.marcado == true ? marcado() : desmarcado()">
+                        {{variable.variableDescription}}
+                </ion-label>
+                <ion-select   placeholder="Select Variable" (ionChange)="onChangeVariableId($event)"  >
+                        
+                    <ion-select-option *ngFor="let item of variable.appVariableSearchGetDto" [value]="item" class="ion-text-wrap">
+                
+                        {{item.searchText}}
+                
+                    </ion-select-option>
+            
+                </ion-select>
+                
+            </ion-item>
+
+        </ion-col>
+
+        <ion-col size-lg="8" size-md="8" size-sm="12" size="12" >
+          <!-- Resultado de la Busqueda -->
+          <ion-item>
+            <p *ngIf="listaProductos">Productos</p>
+          </ion-item>
+
+         <ion-list>
+             
+             <ion-item *ngFor="let producto of listaProductos" (click)="onSelect(producto)">
+                     
+                 <img src="{{producto.link}}">
+                 
+                 <ion-item class="item item-text-wrap">
+                  <p>{{ producto.description1 }} - {{producto.productionUnitGetDto.code}} - {{ producto.code }}</p>
+                 </ion-item>
+                 
+                
+                <!--  <ion-label style="padding-left:20px;">
+                    
+                     <p> {{ producto.description1 }} </p>
+                     <p>{{producto.code}}</p>
+                     <p>Precio: {{producto.unitPrice}}</p>
+                 </ion-label> -->
+             </ion-item>
+
+         
+         </ion-list>
+     </ion-col>
+
+
+    </ion-row>
+    
+    
+</ion-grid>
+  
+</div>   
+
+   <div *ngIf="_subCategoryid==2">
+    <ion-searchbar (ionChange)="onChangeSearchText($event)" placeholder="Buscar Producto" debounce=800>
+
+    </ion-searchbar>
+   
+
+    <ion-item-sliding *ngFor="let product of appProductsGetDto" (click)="onSelect(product)">
+
+      <ion-item >
+
+        <img tyle="float: left; padding: 15px 20px 10px 20px;" src="{{product.link}}">
+  
+        <ion-label style="padding-left:20px;">
+          <p>   {{ product.code }} </p>
+          <p>   {{ product.description1 }} </p>
+          <p>   {{ product.description2 }} </p>
+          <p>   Existencia:{{product.existencia  }} </p>
+          <p>   Backlog:{{product.cajasProgramadas  }} </p>
+          <p>   Disponible:{{product.disponible  }} </p>
+          
+          <br>
+        </ion-label>
+       
+      </ion-item>
+
+      
+
+
+    </ion-item-sliding>
+   </div>
+   
+
+
+  </ion-list> 
+
+</ion-content>
+

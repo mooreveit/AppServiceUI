@@ -1,0 +1,32 @@
+Custom Validator in Angular Reactive Form
+https://www.tektutorialshub.com/angular/custom-validator-in-angular-reactive-form/
+
+Reactive Forms in Angular: Listening for Changes
+https://www.digitalocean.com/community/tutorials/angular-reactive-forms-valuechanges
+
+OBSERVABLES
+https://desarrolloweb.com/articulos/practica-observables-angular.html
+
+ANGULAR FORMGROUP Examples
+https://www.concretepage.com/angular-2/angular-2-formgroup-example
+
+//Todo 
+ANGULAR SHARED MODULES
+https://medium.com/better-programming/angular-4-shared-modules-18ac50f24852
+https://developer-kaustubh.medium.com/passing-data-from-parent-component-to-child-component-using-input-decorator-in-angular-763a6cf7a59
+
+
+//Llamadas a la API
+
+    //Para obtener un token
+        //POST
+        //Url: https://localhost:44383/api/token 
+        //Credencial:
+            {
+	            "User": "rr105841",
+	            "Password": "mvc4-2014"
+            }
+        //Respuesta:
+            {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiRnJhbmtsaW4gUmV2ZXJvbiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiRnJhbmtsaW4uUmV2ZXJvbkBnbWFpbC5jb20iLCJuYmYiOjE1OTM0NTA3OTUsImV4cCI6MTU5MzQ1MTk5NSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NDQzODMvIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NDQzODMvIn0.kcNst0iek1ZNpbBvAPKMbxbghX9J3lAL02fHtbedAMM"
+            }

@@ -1,0 +1,8 @@
+{
+    "moneda":
+    [
+        {"id":1,"descripcion":"BS"},
+        {"id":2,"descripcion":"USD"}
+    ]    
+}
+    

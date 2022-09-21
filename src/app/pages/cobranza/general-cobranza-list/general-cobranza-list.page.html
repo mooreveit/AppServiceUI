@@ -1,0 +1,113 @@
+<ion-header>
+  <ion-toolbar color='primary'>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="refresh()">
+        <ion-icon name="refresh"></ion-icon>
+      </ion-button>
+      <ion-button (click)="onClickAdd()">
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
+
+    </ion-buttons>
+    <ion-title>General Cobranzas List</ion-title>
+  </ion-toolbar>
+  <div *ngIf="role != 355">
+    <ion-item>
+      <ion-label>Oficina</ion-label>
+      <ion-select [(ngModel)]="mtrOficinaSelected" (ionChange)="onChangeOfic($event)" [compareWith]="compareWith"
+        value="{{defaultOficina}}" interface="action-sheet">
+        <ion-select-option *ngFor="let item of oficinas" [value]="item.codigo">
+          {{item.descripcion}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <br>
+    <ion-item>
+      <ion-label>Vendedor</ion-label>
+      <ion-select [(ngModel)]="mtrVendedorSelected" (ionChange)="onChangeVend($event)" interface="action-sheet">
+        <ion-select-option *ngFor="let item of mtrVendedoresDto" [value]="item.codigo">
+          {{item.nombre}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+  </div>
+
+  <br>
+  <ion-item>
+
+    <ion-searchbar (ionChange)="onChangeSearchText($event)" placeholder="IdCliente-Nombre Ciente- Vendedor - Documento"
+      debounce=800></ion-searchbar>
+
+  </ion-item>
+</ion-header>
+<ion-row>
+
+  <ion-col *ngIf="showLoading">
+    <div class="ion-text-center">
+
+      <h3>Por favor,espere...</h3>
+
+    </div>
+  </ion-col>
+
+</ion-row>
+<ion-content>
+
+  <!-- List of Text Items -->
+
+  <!--class="scroll-content"-->
+  <ion-list>
+    <!-- Default Refresher -->
+
+    <!-- <ion-refresher slot="fixed" (ionRefresh)="refresh()">
+      <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Pull to refresh"
+        refreshingSpinner="circles" refreshingText="Refreshing...">
+      </ion-refresher-content>
+    </ion-refresher> -->
+
+    <!-- <ion-spinner *ngIf="show"></ion-spinner> -->
+    <ion-item-sliding *ngFor="let item of cobGeneralCobranzaDto">
+      <ion-item detail>
+        <ion-label>
+          <h3 text-capitalize> {{ item.idCliente }}-{{ item.nombreCliente }}</h3>
+          <p>Moneda:{{ item.nombreTipoMoneda }}</p>
+          <p>Grabado:{{ item.montoTransaccionString }}</p>
+          <p>Rc:{{ item.documento }} Fecha:{{ item.fechaTransaccionString }}</p>
+          <p>Planilla:{{ item.numReferencia }}</p>
+          <p>Vendedor:{{ item.nombreVendedor}} </p>
+          <p>Operacion:{{ item.nombreTipoTransaccion}} </p>
+          <p>Banco:{{ item.nombreBanco}} </p>
+          <p>Pendiente Grabar:{{ item.totalDetalleCobrado}} </p>
+          <p>Status:{{ item.status}} </p>
+
+
+
+        </ion-label>
+      </ion-item>
+
+
+
+      <ion-item-options side="end">
+        <ion-item-option color="primary" (click)="presentActionSheet(item)">
+
+          <ion-icon slot="icon-only" name="push-outline"></ion-icon>
+        </ion-item-option>
+
+
+      </ion-item-options>
+    </ion-item-sliding>
+
+
+
+
+    <ion-infinite-scroll threshold='15%' (ionInfinite)=loadMore($event)>
+      <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="Cargando...">
+
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-list>
+
+</ion-content>

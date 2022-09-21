@@ -1,0 +1,172 @@
+https://www.youtube.com/watch?v=JrfB_33Do_8&list=PLU3UD_RM_1Abkcw8jjCl4o179jfyD47mj&index=2
+
+Clean Architecture
+
+Github repo: https://github.com/jebmole/SocialMedia
+
+Curso completo
+Part 1 - Summary : https://youtu.be/9kYGe5OzrV4
+Part 2 - Clean Architecture : https://youtu.be/D48O5NJsQi0
+Part 3 - Dependency Injection & EF Core : https://youtu.be/2yyc6LnJTRI
+Scaffold-DbContext "Server=.;Database=RRDDev;Integrated Security = true" Microsoft.EntityFrameworkCore.SqlServer -OutputDir DataTmp
+Scaffold-DbContext "Server=.;Database=MC;Integrated Security = true" Microsoft.EntityFrameworkCore.SqlServer -OutputDir DataMC
+Scaffold-DbContext "Server=172.28.107.19;Database=RRD;User Id=userweb;Password=userweb2003;MultipleActiveResultSets=true" Microsoft.EntityFrameworkCore.SqlServer -OutputDir DataTmp
+Scaffold-DbContext "Server=172.28.107.19;Database=RRD;User Id=userweb;Password=userweb2003;MultipleActiveResultSets=true" Microsoft.EntityFrameworkCore.SqlServer -OutputDir DataTmp
+Scaffold-DbContext "Server=172.28.107.19\\FSVEMCYN03D;Database=Mooreve;User Id=userweb;Password=userweb2003;MultipleActiveResultSets=true" Microsoft.EntityFrameworkCore.SqlServer -OutputDir DataTmp
+Scaffold-DbContext "Server=172.28.107.19\\FSVEMCYN03D;Database=Clientes;User Id=userweb;Password=userweb2003;MultipleActiveResultSets=true" Microsoft.EntityFrameworkCore.SqlServer -OutputDir DataClientes
+Scaffold-DbContext "Server=.;Database=Sap;User Id=userweb;Password=userweb2003;MultipleActiveResultSets=true" Microsoft.EntityFrameworkCore.SqlServer -OutputDir DataSap
+Scaffold-DbContext "Server=.;Database=Clientes;User Id=userweb;Password=userweb2003;MultipleActiveResultSets=true" Microsoft.EntityFrameworkCore.SqlServer -OutputDir DataClientes
+Scaffold-DbContext "Server=172.28.107.19\\FSVEMCYN03D;Database=Nomina;User Id=userweb;Password=userweb2003;MultipleActiveResultSets=true" Microsoft.EntityFrameworkCore.SqlServer -OutputDir DataNomina
+
+
+Part 4 - Fluent API in EF Core : https://youtu.be/swLZW434wVE
+Part 5 - HTTP Basics & REST : https://youtu.be/28nideHfyKY
+Part 6 - DTOs & Automapper : https://youtu.be/DEOBWo2YodI
+Part 7 - Configuration & Fluent Validations: https://youtu.be/cUZ3bAckesQ
+Part 8 - Crud Operations with EF Core : https://youtu.be/2InQG-cSr9U
+Part 9 - Business Logic and Repository Pattern : https://youtu.be/tfgSkC5hASA
+Part 10 - Generic Repository and Unit of Work : https://youtu.be/1z1nPoZrNtw
+Part 11 - Custom Exceptions : https://youtu.be/rARDZDyH_yY
+Part 12 - Filtering Data and Return Types : https://youtu.be/2ZwUFzdUBbE
+Part 13 - Implementing Pagination : https://youtu.be/F7bjl37e-h0
+Part 14 - Configuration Settings : https://youtu.be/jbaXvt46FpY
+Part 15 - Documenting API with Swagger : https://youtu.be/A_8b8s9qafw
+
+Documentacion 
+https://www.openapis.org/
+https://swagger.io/
+http://editor.swagger.io/	
+Part 16 - Securing API with JWT : https://youtu.be/6EXZZh__XH8
+https://jwt.io
+
+Part 17 - Deploying API in Azure and IIS : https://youtu.be/76BD-8AvYDc
+
+
+
+git  remote add origin https://github.com/reveronfranklin/AppService.git
+
+upload file Angulart
+Parte I
+https://www.youtube.com/watch?v=QKEjDB1J2P8
+Parte II
+https://www.youtube.com/watch?v=loLccd5m2JI&t=2s
+
+netcore 3.1
+Arquitectura orientada a eventos
+Notificaciones
+micro servicios
+
+3 ways to use HTTPClientFactory in ASP.NET Core 2.1
+https://www.talkingdotnet.com/3-ways-to-use-httpclientfactory-in-asp-net-core-2-1/
+
+########################################
+Consumir Api desde el Backend C#
+https://www.youtube.com/watch?v=jfe4p63jVIA
+
+
+############RECONSTRUIR cordova ###################################
+ionic cordova platform remove android
+ionic cordova platform add android
+setx ANDROID_SDK_ROOT "D:\Program Files\Android\bin\android-sdk"
+setx PATH "%PATH%;%ANDROID_SDK_ROOT%\tools;%ANDROID_SDK_ROOT%\platform-tools"
+###############################################
+Publicar app en producccion
+ionic build --prod --release
+- Ioni crea carpeta www en el proyecto
+basta con copiar carpeta en el server y crear el sitio.
+
+Tamaño Icono en png debe ser:1024 x 1024
+nombre icon.png
+Tamaño splash en png debe ser:2732 x 2732
+nombre splash.png
+	
+
+###########################################################
+enviar app al dispositivo
+ionic cordova run android --device
+Firmar Apk para subir a Play Store
+https://www.nigmacode.com/ionic/Exportar-y-firmar-APK-en-Ionic
+https://ionicframework.com/docs/deployment/play-store
+
+keytool -genkey -v -keystore intranetfirmamoore -alias intranetfirmamoore -keyalg RSA -keysize 2048 -validity 10000
+
+Clave:intranetfirmamoore
+Nombre y Apellido:Franklin Reveron
+Nombre de su unidad de organizacion:IT
+Nombre de su Organizacion:Moore
+Nombre de su Ciudad:Maracay
+Nombre de su estado:Aragua
+Codigo de su Pais:VE
+
+D:\Moore\appserviceui\platforms\android\app\build\outputs\apk\release\app-release-unsigned.apk
+
+
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore intranet-firma app-release-unsigned.apk intranet-firma
+
+zipalign -v 4 app-release-unsigned.apk AppMoore.apk
+
+publicar App ionic en tienda
+https://www.youtube.com/watch?v=UfbrC0_Cd0g&list=PLCKuOXG0bPi2iJDtbAmMJRI_TmW8CvA3o&index=6
+
+currency-mask
+https://developer.aliyun.com/mirror/npm/package/ng2-currency-mask
+
+**************************************************************
+https://www.nigmacode.com/ionic/Exportar-y-firmar-APK-en-Ionic/
+Ruta jdk
+C:\Program Files\Java\jdk1.8.0_261\bin
+
+id aplicacion:com.AppMooreve.intranet
+
+Paso 1:
+ionic cordova build --release android
+
+Paso 2:
+keytool -genkey -v -keystore AppMooreIntranet.keystore -alias AppMooreIntranet -keyalg RSA -keysize 2048 -validity 10000
+
+Clave:intranetfirmamoore
+Nombre y Apellido:Franklin Reveron
+Nombre de su unidad de organizacion:IT
+Nombre de su Organizacion:Moore
+Nombre de su Ciudad:Maracay
+Nombre de su estado:Aragua
+Codigo de su Pais:58
+Paso 3:
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore AppMooreIntranet.keystore app-release-unsigned.apk AppMooreIntranet
+
+Paso 4:
+zipalign -v 4 app-release-unsigned.apk AppMooreIntranet.apk
+
+
+**************************************************************
+Usuario desarrollador
+moorevzladev@gmail.com Pasteur2020*
+************************************************************
+Configuracion Hangfire
+https://www.youtube.com/watch?v=-1tSL586v9g
+https://docs.hangfire.io/en/latest/getting-started/index.html
+https://github.com/RO-Devs/HangFireJobs/blob/main/HangFireJobs.Web/Startup.cs
+Configurar en sgundos
+https://stackoverflow.com/questions/38367398/hangfire-recurring-tasks-under-minute
+
+
+**************************************************************************
+HERRAMIENTAS DE MAQUETACION
+**************************************************************************
+Free Favicon 
+https://formito.com/tools/favicon
+
+
+
+****************************************************************************
+INSTALAR DATABLE 
+https://www.freakyjolly.com/angular-datatable-using-jquery-datatable-library/
+*****************************************************************************
+npm install jquery --save
+npm install datatables.net --save
+npm install datatables.net-dt --save
+npm install angular-datatables --save
+npm install @types/jquery --save-dev
+npm install @types/datatables.net --save-dev
+
+

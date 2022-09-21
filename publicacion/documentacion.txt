@@ -1,0 +1,25 @@
+Key de Firma Apk para publicacion
+D:\Moore\appserviceui\publicacion\intranet-moore.jks
+Clave Moore2020*
+
+
+{
+	
+	"Id":2,
+	"Cotizacion":"LL05202011007",
+	"AppGeneralQuotesId": 11,
+    "Producto":"ETIQUETA",
+    "IdProducto":4,
+    "NombreComercialProducto":"ETIQUETA NUEVA test mod 11221",
+    "IdEstatus":1,
+	"Cantidad":3,
+	"Precio":5,
+	"Total":15,
+	"PrecioUsd":5,
+	"TotalUsd":15,
+ 	"IdUnidad":4,
+    "Observaciones":"Observaciones ...........alberto.333333.",
+    "DiasEntrega":1
+
+}
+

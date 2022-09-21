@@ -1,0 +1,103 @@
+[
+  {
+    "role": 387,
+    "title": "Main",
+    "url": "/menu/main",
+    "icon": "home"
+  },
+
+  {
+    "role": 387,
+    "title": "Cobranzas",
+    "children": [
+      {
+        "title": "Cobranzas",
+        "url": "/menu/general-cobranza-list",
+        "icon": "cash-outline"
+      },
+      {
+        "title": "Verificar Pago",
+        "url": "/menu/verificar-pago",
+        "icon": "checkmark-outline"
+      },
+      {
+        "title": "Aprobar Cobranza",
+        "url": "/menu/aprobar-cobranza",
+        "icon": "checkmark-done-outline"
+      }
+    ]
+  },
+  {
+    "role": 372,
+    "title": "Main",
+    "url": "/menu/main",
+    "icon": "home"
+  },
+  {
+    "role": 372,
+    "title": "Cobranzas",
+    "children": [
+      {
+        "title": "Cobranzas",
+        "url": "/menu/general-cobranza-list",
+        "icon": "cash-outline"
+      },
+      {
+        "title": "Verificar Pago",
+        "url": "/menu/verificar-pago",
+        "icon": "checkmark-outline"
+      },
+      {
+        "title": "Aprobar Cobranza",
+        "url": "/menu/aprobar-cobranza",
+        "icon": "checkmark-done-outline"
+      }
+    ]
+  },
+  {
+    "role": 355,
+    "title": "Main",
+    "url": "/menu/main",
+    "icon": "home"
+  },
+
+  {
+    "role": 355,
+    "title": "Cobranzas",
+    "children": [
+      {
+        "title": "Cobranzas",
+        "url": "/menu/general-cobranza-list",
+        "icon": "cash-outline"
+      }
+    ]
+  },
+  {
+    "role": 366,
+    "title": "Main",
+    "url": "/menu/main",
+    "icon": "home"
+  },
+
+  {
+    "role": 366,
+    "title": "Cobranzas",
+    "children": [
+      {
+        "title": "Cobranzas",
+        "url": "/menu/general-cobranza-list",
+        "icon": "cash-outline"
+      },
+      {
+        "title": "Verificar Pago",
+        "url": "/menu/verificar-pago",
+        "icon": "checkmark-outline"
+      },
+      {
+        "title": "Aprobar Cobranza",
+        "url": "/menu/aprobar-cobranza",
+        "icon": "checkmark-done-outline"
+      }
+    ]
+  }
+]

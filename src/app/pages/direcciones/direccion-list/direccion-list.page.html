@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Direcciones de Entrega</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+   <ion-list>
+     <ion-item *ngFor="let item of mtrDireccionesDto" (click)="setIdDireccionEntrega(item)">
+       <ion-label>
+
+        <h3>Id:          {{ item.id }}          </h3> 
+        <p> Codigo:      {{ item.codigo }}      </p>
+        <p> Rif :        {{ item.rif  }}        </p>
+        <p class="ion-text-wrap"> Direccion :  {{ item.direccion  }}  </p>
+
+       </ion-label>
+     </ion-item>
+   </ion-list>
+
+</ion-content>

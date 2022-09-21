@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title text-center>Iniciar sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form #formulario="ngForm" (ngSubmit)="onSubmitLogin()">
+    <ion-row>
+
+      <ion-col *ngIf="show">
+        <div class="ion-text-center">
+
+          <h3>Validando usuario......</h3>
+
+        </div>
+      </ion-col>
+
+    </ion-row>
+    <ion-item>
+      <ion-label position="floating">Usuario</ion-label>
+      <ion-input type="text" [(ngModel)]="usuario.User" name="email" required></ion-input>
+    </ion-item>
+
+    <!-- VERSION ORIGINAL / NO MUESTRA NI OCULTA EL PWD 
+    <ion-item>
+      <ion-label position="floating"> Contraseña</ion-label>
+      <ion-input [(ngModel)]="usuario.Password" type="password" name="password2" required></ion-input>
+    </ion-item>
+    -->
+
+    <!-- VERSION ORIGINAL CON CAPACIDAD DE MOSTRAR-OCULTAR EL PASSWORD -->
+    <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input [type]="passwordType" clearOnEdit="false" [(ngModel)]="usuario.Password" name="password" required></ion-input>
+        <ion-icon slot="end" [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
+    </ion-item>
+
+  </form>
+
+  <br>
+  <ion-button (click)="onSubmitLogin()" expand="full" [disabled]="formulario.invalid">Entrar</ion-button>
+  <br>
+</ion-content>

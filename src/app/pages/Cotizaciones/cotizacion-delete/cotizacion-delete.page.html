@@ -1,0 +1,30 @@
+<ion-header>
+    <ion-toolbar color='primary'>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/" text=""></ion-back-button>
+        </ion-buttons>
+        <ion-title>Eliminar Cotización</ion-title>
+    </ion-toolbar>
+    <ion-row>
+
+        <ion-col *ngIf="_eliminando">
+          <div class="ion-text-center">
+    
+            <h3>Eliminando Cotizacion.........</h3>
+    
+          </div>
+        </ion-col>
+    
+      </ion-row>
+</ion-header>
+
+<ion-content>
+    
+    <app-cotizacion-resumen [cotizacion]="cotizacion"></app-cotizacion-resumen>
+  
+    <ion-button *ngIf="!_eliminando" (click)="presentAlert()" color="danger" expand="block" shape="round">
+        Eliminar Cotizacion
+        <ion-icon name="trash-outline"></ion-icon>
+    </ion-button>
+
+</ion-content>

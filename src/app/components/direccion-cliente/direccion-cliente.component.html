@@ -1,0 +1,19 @@
+
+
+
+<ion-card>
+
+  <ion-label style="padding-left:5%; padding-top: 5%;" >DirecciónFacturar </ion-label>
+
+  <ion-item *ngFor="let item of direccionFacturaCliente">
+  <ion-label formControlName="idDireccionFacturar">
+    
+    <p class="ion-text-wrap"> {{item.direccion}} + {{item.direccion1}} + {{item.direccion2}} </p>  
+    <p> {{item.rif}} </p>
+
+  </ion-label>
+</ion-item>
+
+</ion-card>
+
+

@@ -1,0 +1,58 @@
+.bold{
+    font-weight: bold;    
+}
+
+.listatasa{
+    font-weight: bold;
+    background-color: yellow !important;
+    color: black;
+    padding: 4px;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.inputValue{
+  border-radius: 5px;
+}
+
+
+.containerCard {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+.containerCardNew {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.contador{
+  color: rgb(243, 183, 183);
+  font-size: small;
+  padding-right: 25px;
+  padding-left: 25px;
+}
+
+.small-list {
+
+  max-height: 400px;
+
+}
+ion-selectCustom{
+    max-width: 500px !important;// your choice :)
+}
+
+ion-select{
+    max-width: 70% !important;// your choice :)
+}
+

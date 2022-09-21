@@ -1,0 +1,61 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-button color="dark" (click)="closeModal()">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons> 
+        <ion-title>Calculadora de Precios</ion-title>
+    </ion-toolbar>
+    <ion-row>
+
+        <ion-col *ngIf="_guardando">
+          <div class="ion-text-center">
+    
+            <h3>Guardando.........</h3>
+    
+          </div>
+        </ion-col>
+    
+      </ion-row>
+</ion-header>
+
+
+<ion-content>
+    <ion-row *ngIf="!_guardando && editable">        
+    
+        <ion-col>
+            <!-- Grabar -->
+            <ion-button type="button" shape="round" color="success" (click)="onSaveVariables()">
+                <ion-icon name="checkmark-circle" style="color:black;font-weight:900;font-size: 2em;"></ion-icon>  
+            </ion-button>
+        </ion-col>
+    </ion-row>
+    <ion-list>
+
+        <ion-item>
+            <h4 style="color: blue">{{item.nombreComercialProducto}}</h4>
+        </ion-item>
+        
+        <ion-item *ngFor="let v of listaVariables, let indice = index" (click)="editar(v.description, v.value, indice,v.min,v.max)">
+            <ion-label>                
+                <ion-label>{{v.description}}</ion-label>
+                <ion-label>Valor: {{v.value}}</ion-label>
+                
+            </ion-label>
+        </ion-item>
+    
+    </ion-list>
+
+    
+    <ion-row *ngIf="!_guardando && editable">        
+    
+        <ion-col>
+            <!-- Grabar -->
+            <ion-button type="button" shape="round" color="success" (click)="onSaveVariables()">
+                <ion-icon name="checkmark-circle" style="color:black;font-weight:900;font-size: 2em;"></ion-icon>  
+            </ion-button>
+        </ion-col>
+    </ion-row>
+   
+</ion-content>

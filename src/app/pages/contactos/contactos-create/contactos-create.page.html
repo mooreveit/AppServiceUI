@@ -1,0 +1,123 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Crear Contactos</ion-title>
+    <ion-buttons slot="start">
+      <ion-button color="dark" (click)="closeModal()">
+          <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+  </ion-buttons>
+ 
+  </ion-toolbar>
+  <ion-row>
+
+    <ion-col *ngIf="_guardando">
+      <div class="ion-text-center">
+
+        <h3>Guardando......</h3>
+
+      </div>
+    </ion-col>
+
+  </ion-row>
+ 
+
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="form" novalidate>
+
+  
+    <ion-item>
+      <ion-label position="floating">Rif</ion-label>
+      <ion-input type="text" formControlName="rif"></ion-input>
+      <div *ngIf="rifFieldIsInvalid">
+        <ion-text color="danger">
+          Formato de RIF invalido: el primer caracter debe ser J,G,V,E (Mayuscula). Ej: J-12345678-9
+        </ion-text>
+       
+      </div>
+    </ion-item>
+   
+    
+
+    <ion-item>
+      <ion-label position="floating">Nombre:</ion-label>
+      <ion-input type="text" formControlName="nombre"></ion-input>
+  
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Apellido:</ion-label>
+      <ion-input type="text" formControlName="apellido"></ion-input>
+  
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label position="floating">Tratamiento:</ion-label>
+      <ion-select formControlName="tratamiento" >
+        <ion-select-option *ngFor="let item of listTratamientoDto" [value]="item.idTratamiento">
+          {{item.nombreTratamiento}}
+          
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Departamento:</ion-label>
+      <ion-select formControlName="departamento" >
+        <ion-select-option *ngFor="let item of listSapDepartamentoContacto" [value]="item.codigo">
+          {{item.descripcion}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Cargo:</ion-label>
+      <ion-select formControlName="cargo" >
+        <ion-select-option *ngFor="let item of listSapCargoContacto" [value]="item.codigo">
+          {{item.descripcion}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Poder:</ion-label>
+      <ion-select formControlName="poder" >
+        <ion-select-option *ngFor="let item of listsapPoderContactoGetDto" [value]="item.codigo">
+          {{item.descripcion}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Telefono:</ion-label>
+      <ion-input type="text" formControlName="telefono"></ion-input>
+  
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Celular:</ion-label>
+      <ion-input type="text" formControlName="celular"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="false">
+      <ion-label position="floating">Fax:</ion-label>
+      <ion-input type="text" formControlName="fax"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Email:</ion-label>
+      <ion-input type="email" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <label for="fechaNacimiento" position="floating">Fecha Nacimiento:</label>
+      <ion-datetime min="1910" max="2050-12-31" formControlName="fechaNacimiento">
+      </ion-datetime>
+
+
+    </ion-item>
+    <ion-button [disabled]="(!form.valid)" type="button" shape="round" color="success" float-right
+      (click)="agregarContacto()">
+      <ion-icon name="checkmark-circle" style="color:black;font-weight:900;font-size: 2em;"></ion-icon>
+      Guardar
+    </ion-button>
+
+
+  </form>
+</ion-content>

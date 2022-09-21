@@ -1,0 +1,140 @@
+<ion-header no-border>
+  <ion-toolbar color='primary'>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-back-button defaultHref="/" text=""></ion-back-button>
+
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+
+      <ion-button (click)="onClickExit()">
+        <ion-icon name="exit-outline"></ion-icon>
+
+      </ion-button>
+
+    </ion-buttons>
+
+
+    <ion-title text-capitalize> {{ titulo }} </ion-title>
+  </ion-toolbar>
+  <ion-item>
+    <label>
+      <p>
+        {{nombreCliente}}
+      </p>
+      <p *ngIf="mensaje!=''">
+        {{mensaje}}
+      </p>
+    </label>
+  </ion-item>
+
+
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <form [formGroup]="form" novalidate (ngSubmit)="save($event)">
+      <ion-list>
+        <ion-item>
+          <label for="codigoCliente" position="floating">Cliente:</label>
+          <ion-input type="text" formControlName="codigoCliente"></ion-input>
+          <ion-button (click)="onBuscarCliente()">
+            <ion-icon name="search-outline"></ion-icon>
+          </ion-button>
+          <p *ngIf="codigoClienteField.errors && codigoClienteField.touched">
+            <small *ngIf="codigoClienteField.hasError('required') "> Cliente es Requerido!!</small>
+            <small *ngIf="codigoClienteField.hasError('maxlength') "> Codigo de Cliente es de 6 caracteres!</small>
+            <small *ngIf="codigoClienteField.hasError('minlength') "> Codigo de Cliente es de 6 caracteres!</small>
+          </p>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Moneda:</ion-label>
+          <ion-select formControlName="idMoneda" (ionChange)="onChangeMoneda($event)" [value]="idMonedaField.value">
+            <ion-select-option *ngFor="let item of listMtrTipoMonedasDto" [value]="item.id">
+              {{item.descripcion}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <label for="montoTransaccion" position="floating">Monto Total:</label>
+          <ion-input type="number" formControlName="montoTransaccion"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Operación</ion-label>
+          <ion-select formControlName="idTipoTransaccion" (ionChange)="onChangeTipoTransaccion($event)"
+            [value]="idTipoTransaccionField.value">
+            <ion-select-option *ngFor="let item of listCobTipoTransaccionDto" [value]="item.idTipoTransaccion">
+              {{item.nombreTipoTransaccion}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label position="floating">Cuenta</ion-label>
+          <ion-select formControlName="idBanco" (ionChange)="onChangeBanco($event)" [value]="idBancoField.value">
+            <ion-select-option *ngFor="let item of listMtrBancosDto" [value]="item.codigo">
+              {{item.nombre}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <label for="fechaTransaccion" position="floating">Fecha Pago:</label>
+          <ion-datetime min="2016" max="2050-11-31" formControlName="fechaTransaccion"
+            (ngModel)="fechaTransaccionField.value">
+          </ion-datetime>
+
+
+        </ion-item>
+
+        <!--  <ion-item lines="full">
+          <ion-label position="floating">Fecha Pago</ion-label>
+          <ion-datetime (ionChange)="getDate($event)" formControlName="fechaTransaccion" [value]="defaultDate">
+          </ion-datetime>
+        </ion-item> -->
+        <ion-item>
+          <label for="numReferencia" position="floating">Num. Referencia:</label>
+          <ion-input type="number" formControlName="numReferencia"></ion-input>
+        </ion-item>
+        <ion-item>
+          <label for="email" position="floating">Email:</label>
+          <ion-input type="email" formControlName="email" Disabled="true"></ion-input>
+          <ion-button (click)="onBuscarContacto()">
+            <ion-icon name="search-outline"></ion-icon>
+          </ion-button>
+        </ion-item>
+
+
+
+      </ion-list>
+
+      <ion-row>
+
+        <ion-col *ngIf="show">
+          <div class="ion-text-center">
+
+            <h3>Guardando......</h3>
+
+          </div>
+        </ion-col>
+
+      </ion-row>
+      <div *ngIf="!show">
+        <ion-button expand="full" type="submit" [disabled]="form.invalid">
+          Guardar
+        </ion-button>
+        <br>
+        <ion-button expand="full" (click)="onGotoGrabacionCobranza()" [disabled]="form.invalid" *ngIf="documento>1">
+          Grabar Cobranza
+        </ion-button>
+      </div>
+
+    </form>
+
+
+  </ion-card>
+
+</ion-content>

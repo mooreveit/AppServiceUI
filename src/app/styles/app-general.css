@@ -1,0 +1,24 @@
+/* Set the width to the full container and center the content */
+ion-select {
+    width: 100%;
+  
+    justify-content: center;
+  }
+  
+  ion-modal.fullscreen {
+  --width: 75%;
+  --height: 85%;
+  --border-radius: 0; 
+  margin: auto;
+  padding: 20px;  
+  text-align: center;
+}
+
+.test{
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+  
+ion-content.dark{
+
+    --ion-background-color:#111D12;
+}

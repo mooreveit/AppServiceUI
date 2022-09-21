@@ -1,0 +1,110 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Agregar Documento al RC: {{ documentoField.value }} </ion-title>
+    <ion-buttons slot="end">
+
+      <ion-button (click)="Salir($event)">
+        <ion-icon name="close-circle-outline"></ion-icon>
+
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-row>
+
+    <ion-col *ngIf="showLoading">
+      <div class="ion-text-center">
+
+        <h3>Por favor,espere...</h3>
+
+      </div>
+    </ion-col>
+
+  </ion-row>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <form [formGroup]="form" novalidate (ngSubmit)="save($event)">
+      <ion-list>
+
+        <ion-item>
+          <ion-label position="floating">Pago</ion-label>
+          <ion-select formControlName="transaccion" (ionChange)="onChangeTransaccion($event)"
+            [value]="transaccionField.value">
+            <ion-select-option *ngFor="let item of listCobTransaccionesDto" [value]="item.transaccion">
+              {{item.nombreTransaccion}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <div *ngIf="transaccionField.value=='RC' || transaccionField.value=='RE'">
+          <!-- <ion-item >
+            <ion-label position="floating">Documento</ion-label>
+  
+            <ion-select formControlName ="docAfecta" (ionChange)="onChangeTransaccionAfecta($event)" [value]="docAfectaField.value" >
+              <ion-select-option *ngFor="let item of cobEstadoCuentaDto" [value] = "item.id">
+               Id {{item.id}}- {{item.rpdoc}} - {{item.documentoSap}} -Total:{{item.montoOriginalString}}- Saldo:{{item.saldoString}}
+              </ion-select-option>
+            </ion-select>
+            
+          </ion-item> -->
+
+          <ion-item>
+            <label position="floating">Documento: {{this.itemCobEstadoCuentaDto.rpdoc}} Id: </label>
+            <ion-input type="text" formControlName="docAfecta"></ion-input>
+            <ion-button (click)="onBuscarDocumento()">
+              <ion-icon name="search-outline"></ion-icon>
+            </ion-button>
+            <p *ngIf="docAfectaField.errors && docAfectaField.touched">
+              <small *ngIf="docAfectaField.hasError('required') "> Cliente es Requerido!!</small>
+              <small *ngIf="docAfectaField.hasError('maxlength') "> Codigo de Cliente es de 6 caracteres!</small>
+              <small *ngIf="docAfectaField.hasError('minlength') "> Codigo de Cliente es de 6 caracteres!</small>
+            </p>
+          </ion-item>
+          <ion-item>
+            <label>Saldo:{{ this.itemCobEstadoCuentaDto.saldoString }}</label>
+          </ion-item>
+          <ion-item>
+            <label>Base:{{ this.itemCobEstadoCuentaDto.baseImponibleString }}</label>
+          </ion-item>
+          <ion-item>
+            <label>Iva:{{ this.itemCobEstadoCuentaDto.ivaString }}</label>
+          </ion-item>
+          <ion-item>
+            <label>Total:{{ this.itemCobEstadoCuentaDto.montoOriginalString }}</label>
+          </ion-item>
+        </div>
+
+
+        <ion-item>
+          <label for="monto" position="floating">Monto Cobrado:</label>
+          <ion-input type="number" formControlName="monto"></ion-input>
+        </ion-item>
+
+        <ion-item *ngIf="transaccionField.value=='RU'">
+          <label for="cotizacion" position="floating">Cotizacion:</label>
+          <ion-input type="text" formControlName="cotizacion"></ion-input>
+        </ion-item>
+
+      </ion-list>
+
+      <ion-row>
+
+        <ion-col *ngIf="show">
+          <div class="ion-text-center">
+
+            <h3>Guardando......</h3>
+
+          </div>
+        </ion-col>
+
+      </ion-row>
+      <div *ngIf="!show">
+        <ion-button expand="full" type="submit" [disabled]="form.invalid">
+          Guardar
+        </ion-button>
+      </div>
+
+
+    </form>
+  </ion-card>
+</ion-content>

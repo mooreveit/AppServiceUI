@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar color='primary'>
+
+    <!-- Boton principal del menu -->
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+
+    <ion-title>Copiar Receta</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-item>
+
+
+      <ion-label>
+        <h2> Producto Origen</h2>
+        <p> {{ product.code }} {{ product.description1 }} </p>
+
+
+
+      </ion-label>
+
+
+    </ion-item>
+  </ion-card>
+
+  <form [formGroup]="form" novalidate (ngSubmit)="save($event)">
+
+    <ion-card>
+      <!-- Id producto Oculto-->
+      <ion-item *ngIf="false">
+        <ion-label position="fixed">Producto Id</ion-label>
+        <ion-input type="number" formControlName="idProducto">
+
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="text" formControlName="producto" placeholder="Buscar Producto Destino.">
+
+        </ion-input>
+        <ion-button (click)="onBuscarProducto()">
+          <ion-icon name="search-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+      <br>
+      <ion-button expand="full" type="submit" [disabled]="form.invalid">
+        Copiar Receta
+      </ion-button>
+      <br>
+
+    </ion-card>
+
+
+
+
+  </form>
+</ion-content>

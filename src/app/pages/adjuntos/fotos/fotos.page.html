@@ -1,0 +1,68 @@
+<ion-header>
+    <ion-toolbar color='primary'>        
+        <ion-title>Carga de Adjuntos
+        <ion-icon name='close-circle' (click)='dismiss()' style='float: right;'></ion-icon>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+    <!-- add foto -->
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button>
+            <ion-icon name="add" (click)="ionViewWillEnter()"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+    <ion-item *ngIf="imageList.length > 0" color='warning'>
+        <ion-label>
+            Toque una imágen para retirarla de la lista.
+        </ion-label>
+    </ion-item>
+
+    <ion-item>
+        
+        <ion-label position="floating">Seleccione un Tipo de Documento</ion-label>
+        
+        <ion-select #cbo (ionChange)="onChange($event)" >
+            <ion-select-option *ngFor="let item of listOfdTipoDocumentoDto" [value]="item.idTipoDocumento">
+                {{item.nombreDocumento}}
+            </ion-select-option>
+        </ion-select>
+
+    </ion-item>
+
+    <ion-grid *ngIf = "imageList.length > 0">
+
+        <!-- Table Style -->
+        <ion-row size="12">
+
+            <ion-col size="6" *ngFor="let i of imageList; index as ndx">  
+
+                <img src="{{i.base64}}" (click)="eliminar(ndx)" /> 
+
+            </ion-col>
+
+        </ion-row>    
+        
+        <!-- Slide Style -->
+
+        <ion-button (click)="onAddToList()" color='primary' expand="full" shape="round">
+            <ion-icon name="image-outline"></ion-icon>
+            &nbsp;
+            Añadir Imágenes a la Lista
+        </ion-button>
+
+        <br />
+        
+        <ion-button color='success' (click)="onUpload()"  [hidden]="imageList.length <= 0 ? true: false"  expand="full" shape="round">
+     
+            <ion-icon name="cloud-upload-outline"></ion-icon>
+            &nbsp;
+            Subir Imágenes al Servidor
+        </ion-button>
+
+    </ion-grid>   
+    
+</ion-content>

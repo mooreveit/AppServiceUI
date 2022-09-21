@@ -1,0 +1,48 @@
+<ion-header>
+    <ion-toolbar color='primary'>
+
+        <ion-buttons slot="start">
+
+        </ion-buttons>
+
+        <ion-title>Editor de Variables</ion-title>
+
+    </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+    
+    <ion-card>
+        
+        <ion-card-header>
+            <h3>{{descripcion}}</h3>
+        </ion-card-header>
+        
+        <ion-card-content>
+            
+            <ion-label>Indique el Valor</ion-label>
+            <ion-input type="number" [(ngModel)]="valor" min=3 value="{{valor}}"></ion-input>
+            
+            <ion-row>
+                <ion-col col-6 style="text-align:right;">
+                    <!-- Cancel -->
+                    <ion-button type="button" shape="round" color="warning" (click)="onCancelar()">
+                        <ion-icon name="arrow-round-back" style="color:black;font-weight:900;font-size: 2em;"></ion-icon>                       
+                    </ion-button>
+                </ion-col>
+            
+                <ion-col col-6>
+                    <!-- Aceptar -->
+                    <ion-button type="button" shape="round" color="primary" (click)="onAceptar()">
+                        <ion-icon name="checkmark-circle" style="color:black;font-weight:900;font-size: 2em;"></ion-icon>
+                    </ion-button>
+
+                </ion-col>
+            </ion-row>
+        
+        </ion-card-content>
+    
+    </ion-card>
+
+</ion-content>

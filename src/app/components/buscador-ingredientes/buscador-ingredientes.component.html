@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button color="dark" (click)="closeModal()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Buscar Ingrediente</ion-title>
+  </ion-toolbar>
+  <ion-row>
+    <ion-searchbar (ionChange)="onChangeSearchText($event)" placeholder="Ingrediente" debounce=800>
+
+    </ion-searchbar>
+  </ion-row>
+</ion-header>
+
+<ion-content>
+
+
+
+  <ion-list>
+
+    <ion-item *ngFor="let item of appIngredientsGetDto" (click)="selectIngrediente(item)">
+      ({{item.code}} - {{item.description}}   )
+    </ion-item>
+
+  </ion-list>
+
+
+
+</ion-content>

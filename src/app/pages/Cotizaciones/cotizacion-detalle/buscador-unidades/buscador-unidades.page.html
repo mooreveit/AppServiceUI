@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-button color="dark" (click)="closeModal()">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Buscar Unidad Medida</ion-title>
+    </ion-toolbar>
+    <ion-row>
+        <ion-searchbar (ionChange)="onSearchUnidad($event.target.value)" placeholder="Id-Descripcion" debounce=800>
+        </ion-searchbar>
+    </ion-row>    
+</ion-header>
+
+<ion-content>
+
+    <ion-list>
+
+        <ion-item *ngFor="let item of listUnidades" (click)="selectUnidad(item)">
+            {{item.description4}} ({{item.code}})
+        </ion-item>
+
+    </ion-list>
+
+</ion-content>

@@ -1,0 +1,62 @@
+<ion-header>
+    <ion-toolbar color='primary'>
+        <ion-title>Ganar-Perder / Detalle</ion-title>
+        <ion-icon name='close-circle' (click)='dismiss()' slot='end' style="font-size: 24px; padding-right: 20px;"></ion-icon>        
+    </ion-toolbar>
+    <ion-row>
+
+        <ion-col *ngIf="_guardando">
+          <div class="ion-text-center">
+    
+            <h3>Guardando Cotizacion.........</h3>
+    
+          </div>
+        </ion-col>
+    
+      </ion-row>
+</ion-header>
+
+<ion-content>
+
+    <form [formGroup]="form" novalidate>
+      
+        <!-- Combo de seleccion Status Ganar/Perder -->
+        <ion-item>
+            <ion-label position="floating">Estátus</ion-label>
+            <ion-select formControlName="condicionId" (ionChange)="onChangeStatus($event)">
+                <ion-select-option value=1>Ganar</ion-select-option>
+                <ion-select-option value=2>Perder</ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <!-- Combo de seleccion Competidor -->
+        <ion-item>
+            <ion-label position="floating">Motivo</ion-label>
+            <ion-select formControlName="motivoId">
+                <ion-select-option *ngFor="let item of appMotivoGetDto" [value]="item.codigo">
+                    {{ item.descripcion }}
+                </ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+
+            <label for="Competidor" position="floating">Competidor:</label>
+
+            <ion-input type="text" formControlName="competidor"></ion-input>
+
+            <ion-button (click)="onBuscarIdCompetidor()">
+                <ion-icon name="search-outline"></ion-icon>
+            </ion-button>
+
+        </ion-item>
+
+    </form>
+    <div *ngIf="!_guardando">
+        <ion-button [disabled]="(!form.valid)" (click)="GanarPerder()">
+            Grabar
+        </ion-button>
+    </div>
+    
+
+</ion-content>

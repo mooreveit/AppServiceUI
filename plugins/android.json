@@ -1,0 +1,48 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-base64-to-gallery": {
+      "PACKAGE_NAME": "com.AppMooreve.intranet"
+    },
+    "cordova-plugin-actionsheet": {
+      "PACKAGE_NAME": "com.AppMooreve.intranet"
+    },
+    "cordova-plugin-camera": {
+      "ANDROID_SUPPORT_V4_VERSION": "27.+",
+      "PACKAGE_NAME": "com.AppMooreve.intranet"
+    },
+    "cordova-plugin-camera-preview": {
+      "PACKAGE_NAME": "com.AppMooreve.intranet"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.AppMooreve.intranet"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.AppMooreve.intranet"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "com.AppMooreve.intranet"
+    },
+    "cordova-plugin-filepath": {
+      "PACKAGE_NAME": "com.AppMooreve.intranet"
+    },
+    "cordova-plugin-image-picker": {
+      "PACKAGE_NAME": "com.AppMooreve.intranet"
+    }
+  },
+  "dependent_plugins": {
+    "cordova-plugin-ionic-webview": {
+      "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+",
+      "PACKAGE_NAME": "com.AppMooreve.intranet"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.AppMooreve.intranet"
+    }
+  }
+}

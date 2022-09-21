@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Agregar Retenciones </ion-title>
+    <ion-buttons slot="end">
+
+      <ion-button (click)="Salir($event)">
+        <ion-icon name="close-circle-outline"></ion-icon>
+
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <form [formGroup]="form" novalidate (ngSubmit)="save($event)">
+      <ion-list>
+
+        <ion-item>
+          <ion-label position="floating">Tipo Retencion</ion-label>
+          <ion-select formControlName="idTransaccion" (ionChange)="onChangeTransaccion($event)"
+            [value]="idTransaccionField.value">
+            <ion-select-option *ngFor="let item of listCobTransaccionesImpuestoDto1"
+              [value]="item.idTransacccionCobranzas">
+              {{item.nombreTransaccion}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+
+
+        <ion-item>
+          <label for="porcentaje" position="floating">Porcentaje:</label>
+          <ion-input type="number" formControlName="porcentaje"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <label for="nroComprobante" position="floating">Nro Comprobante:</label>
+          <ion-input type="text" formControlName="nroComprobante"></ion-input>
+          <label for="nroComprobante" position="floating">Cant Digitos:{{digitosvalidar}}</label>
+
+        </ion-item>
+        <ion-item>
+          <label for="fechaComprobante" position="floating">Fecha Comprobante:</label>
+          <ion-datetime type="date" formControlName="fechaComprobante"></ion-datetime>
+        </ion-item>
+        <ion-item *ngIf="montoField.value>0">
+          <label for="monto" position="floating">Monto:</label>
+          <ion-input type="number" formControlName="monto"></ion-input>
+        </ion-item>
+
+      </ion-list>
+
+      <ion-row>
+
+        <ion-col *ngIf="show">
+          <div class="ion-text-center">
+
+            <h3>Guardando......</h3>
+
+          </div>
+        </ion-col>
+
+      </ion-row>
+      <div *ngIf="!show">
+        <ion-button expand="full" type="submit" [disabled]="form.invalid">
+          Guardar
+        </ion-button>
+      </div>
+
+
+    </form>
+  </ion-card>
+</ion-content>

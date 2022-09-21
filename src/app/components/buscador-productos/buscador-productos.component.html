@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button color="dark" (click)="closeModal()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Buscar</ion-title>
+  </ion-toolbar>
+  <ion-row>
+    <ion-searchbar (ionChange)="onChangeSearchText($event)" placeholder="Producto" debounce=800>
+
+    </ion-searchbar>
+  </ion-row>
+</ion-header>
+
+<ion-content>
+
+
+
+  <ion-list>
+
+    <ion-item *ngFor="let item of appProductsGetDto" (click)="selectProduct(item)">
+      <!-- ({{item.code}}-{{item.description1}})
+ -->
+
+      <img tyle="float: left; padding: 15px 20px 10px 20px;" src="{{item.link}}">
+  
+      <ion-label style="padding-left:20px;">
+        <p>   {{ item.code }} </p>
+        <p>   {{ item.description1 }} </p>
+        <p>   {{ item.description2 }} </p>
+        <p>   Precio:{{ item.unitPrice }} </p>
+        <p>   Disponible:{{ item.disponible }} </p>
+        <br>
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
+
+
+
+</ion-content>

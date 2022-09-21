@@ -1,0 +1,83 @@
+<ion-header no-border>
+  <ion-toolbar color='primary'>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-back-button defaultHref="/" text=""></ion-back-button>
+
+    </ion-buttons>
+    <ion-buttons slot="end">
+
+      <ion-button (click)="onClickAdd()">
+
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+
+
+
+    <ion-title text-capitalize>Retenciones </ion-title>
+  </ion-toolbar>
+
+  <ion-item>
+
+    <ion-label>
+      <h3 text-capitalize>{{cobGeneralCobranzaDto.idCliente}}-{{cobGeneralCobranzaDto.nombreCliente}}</h3>
+      <h3 text-capitalize> Total Recibo: {{cobGeneralCobranzaDto.montoTransaccionString}} Pendiente
+        {{cobGeneralCobranzaDto.totalDetalleCobradoString}}</h3>
+      <p>{{itemcobGrabacionCobranzaDto.transaccion}} Doc: {{cobGeneralCobranzaDto.documento}} </p>
+      <p *ngIf="itemcobGrabacionCobranzaDto.transaccion=='RU'">Cotizacion:{{itemcobGrabacionCobranzaDto.cotizacion}}</p>
+      <p *ngIf="itemcobGrabacionCobranzaDto.transaccion!='RU'">Doc Afecta:{{itemcobGrabacionCobranzaDto.docAfectaSap}}
+      </p>
+      <p>Base {{itemcobGrabacionCobranzaDto.baseImponibleMostrar}} + Iva:
+        {{itemcobGrabacionCobranzaDto.ivaMostrar}}=Monto {{itemcobGrabacionCobranzaDto.montoOriginalMostrar}} </p>
+
+
+
+    </ion-label>
+  </ion-item>
+
+
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+
+    <ion-item-sliding #slidingItem *ngFor="let item of cobPagoRetencionesDto">
+      <ion-item detail>
+        <ion-label>
+          <h3 text-capitalize> {{ item.nombreTransaccion }} Comprobante: {{ item.nroComprobante}}</h3>
+          <p>Monto:{{ item.montoString}}</p>
+          <p>Porcentaje:{{ item.porcentaje}}</p>
+
+        </ion-label>
+      </ion-item>
+      <ion-item-options side="start">
+        <ion-item-option color="primary" (click)="onClickDetail(item)">
+
+          <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+        </ion-item-option>
+
+        <ion-item-option color="danger" (click)="onClickDelete(item)">
+
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+      <!-- <ion-item-options side="end">
+        <ion-item-option color="primary" (click)="onGotoRetencionesList(item)" >
+          <ion-icon slot="icon-only" name="document-text-outline"></ion-icon>
+         
+        </ion-item-option>
+    
+        
+      </ion-item-options> -->
+
+    </ion-item-sliding>
+
+
+
+
+
+  </ion-list>
+</ion-content>

@@ -1,0 +1,175 @@
+<ion-header>
+  <ion-toolbar color='primary'>
+
+    <!-- Boton principal del menu -->
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+
+    <!-- Botonos auxiliares -->
+    <ion-buttons slot="end">
+
+      <ion-button (click)="refreshNew()">
+        <ion-icon name="refresh"></ion-icon>
+      </ion-button>
+
+      <!-- añadir variable -->
+      <ion-button (click)="onClickAdd()">
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
+
+    </ion-buttons>
+
+    <ion-title>Receta</ion-title>
+
+  </ion-toolbar>
+  <ion-row>
+
+    <ion-col *ngIf="showLoading">
+      <div class="ion-text-center">
+
+        <h3>Cargando Datos.........</h3>
+
+      </div>
+    </ion-col>
+
+  </ion-row>
+  
+</ion-header>
+
+<ion-content>
+
+  <ion-searchbar (ionChange)="onChangeSearchText($event)" placeholder="Codigo-Descripcion-Formula" debounce=800>
+
+  </ion-searchbar>
+  <ion-item>
+    <ion-label>Mostrar Errores</ion-label>
+    <ion-checkbox color="danger" (ionChange)="onChangeErrores($event)"  [(ngModel)]="checkError"></ion-checkbox>
+  </ion-item>  
+  
+  <ion-item>
+    <ion-label >
+      <p>   {{ product.code }} - {{ product.description1 }}</p>
+    </ion-label>
+  </ion-item>
+
+  <table>
+    <tr>
+      <th>Variable</th>
+      <th>Ingrediente</th>
+      <th>Formula</th>
+      <th>Valor Formula</th>
+      <th>Cantidad</th>
+      <th>Costo</th>
+      <th>Orden Calculo</th>
+      <th>Sumar?</th>
+      <th>Afecta Costo?</th>
+      <th>Accion</th>
+    </tr>
+
+  <tr  *ngFor="let item of appRecipesGetDto"   >
+   
+      <td *ngIf="item.mensajeValidacionFormula.length >0" (click)="presentActionSheet(item)"  class="error">  
+        <div >{{item.appVariablesGetDto.code }}</div>       
+      </td>
+      <td (click)="presentActionSheet(item)"  >  
+        <div >{{item.appVariablesGetDto.code }}</div>       
+      </td>
+      <td (click)="presentActionSheet(item)">  
+        <div *ngIf="item.appIngredientsGetDto!=null">{{item.appIngredientsGetDto.description }}</div>       
+      </td>
+      <td (click)="presentActionSheet(item)">{{ item.formula }}</td>
+      <td (click)="presentActionSheet(item)">{{ item.formulaValue }}</td>
+      <td (click)="presentActionSheet(item)" style="text-align: right;vertical-align: middle;">{{ item.quantity }}</td>
+      <td (click)="presentActionSheet(item)" style="text-align: right;vertical-align: middle;">${{ item.totalCost }}</td>
+      <td (click)="presentActionSheet(item)" style="text-align: center;vertical-align: middle;">{{ item.orderCalculate }}</td>
+      <td (click)="presentActionSheet(item)" style="text-align: center;vertical-align: middle;" ><input type="checkbox" value="" [checked]="item.sumValue"></td>
+      <td (click)="presentActionSheet(item)" style="text-align: center;vertical-align: middle;" ><input type="checkbox" value="" [checked]="item.afectaCosto"></td>
+
+      <td (click)="presentActionSheet(item)" >
+        <ion-button >
+          <ion-icon name="checkbox-outline"></ion-icon>
+          
+        </ion-button>
+      </td>
+      
+  
+
+  </tr>
+ 
+ 
+    
+  </table>
+
+  <ion-grid *ngIf="false">
+
+  
+      <ion-list>
+        
+          <ion-row tyle="background: rgba(255, 128, 0, 0.3); border: 1px solid rgba(200, 100, 0, 0.3);">
+            <ion-col size="2">
+             <label >Codigo</label> 
+            </ion-col>
+          
+            <ion-col size="4">
+              Formula
+            </ion-col >
+            <ion-col size="4">
+              Valores Formula
+            </ion-col >
+            <ion-col size="2">
+              Costo
+            </ion-col>
+          </ion-row>
+     
+       
+
+        <!-- Listado de variables  -->
+
+        <ion-item-sliding *ngFor="let item of appRecipesGetDto" color="danger">
+
+          <ion-item (click)="presentActionSheet(item)" >
+
+           <!--  <ion-col size="2">
+              {{ item.code }} 
+            </ion-col> -->
+           <ion-col size="2">
+              <p *ngIf="item.appVariablesGetDto!=null"> {{
+                item.appVariablesGetDto.code }}</p>
+            </ion-col> 
+          
+            <ion-col size="4" class="ion-hide-lg-down">
+              <p *ngIf="item.formula.length>0"> {{ item.formula }} </p>
+            </ion-col>
+            <ion-col size="4" class="ion-hide-lg-down">
+              <p *ngIf="item.formula.length>0"> {{ item.formulaValue }} </p>
+            </ion-col>
+
+            <ion-col size="2">
+              {{ item.totalCost }}
+            </ion-col>
+          <!--  <ion-label>
+          
+            
+              <p> Costo: {{ item.totalCost }} </p>
+              <p *ngIf="item.formula.length>0"> Formula: {{ item.formula }} </p>
+              <p *ngIf="item.formula.length>0"> Formula-Valores: {{ item.formula }} </p>
+            </ion-label> -->
+          </ion-item>
+
+
+          <ion-item-options side="end">
+            <ion-item-option color="primary" (click)="presentActionSheet(item)">
+              <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+
+        </ion-item-sliding>
+      </ion-list>
+
+
+  </ion-grid>
+
+</ion-content>

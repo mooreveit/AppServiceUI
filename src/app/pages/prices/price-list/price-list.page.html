@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-toolbar color='primary'>
+
+    <!-- Boton principal del menu -->
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+
+    <!-- Botonos auxiliares -->
+    <ion-buttons slot="end">
+
+      <ion-button (click)="refreshNew()">
+        <ion-icon name="refresh"></ion-icon>
+      </ion-button>
+
+      <!-- añadir variable -->
+      <ion-button (click)="onClickAdd()">
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
+
+    </ion-buttons>
+
+    <ion-title>Precios</ion-title>
+
+  </ion-toolbar>
+  <ion-row>
+
+    <ion-col *ngIf="showLoading">
+      <div class="ion-text-center">
+
+        <h3>Cargando Datos.........</h3>
+
+      </div>
+    </ion-col>
+
+  </ion-row>
+  
+</ion-header>
+
+
+<ion-content>
+  <ion-item>
+    <ion-label >
+      <p>   {{ product.code }} - {{ product.description1 }}</p>
+    </ion-label>
+  </ion-item>
+  <table>
+    <tr>
+      <th>Desde</th>
+      <th>Hasta</th>
+      <th>Precio</th>
+     
+      <th>Accion</th>
+    </tr>
+
+  <tr  *ngFor="let item of listAppPriceGetDto"   >
+   
+    
+    
+      <td (click)="presentActionSheet(item)">{{ item.desde }}</td>
+      <td (click)="presentActionSheet(item)">{{ item.hasta }}</td>
+      <td (click)="presentActionSheet(item)" style="text-align: right;vertical-align: middle;">{{ item.precio }}</td>
+    
+
+      <td (click)="presentActionSheet(item)" >
+        <ion-button >
+          <ion-icon name="checkbox-outline"></ion-icon>
+          
+        </ion-button>
+      </td>
+      
+  
+
+  </tr>
+ 
+ 
+    
+  </table>
+</ion-content>

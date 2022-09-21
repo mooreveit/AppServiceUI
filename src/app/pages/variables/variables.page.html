@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color='primary'>
+
+      <!-- Boton principal del menu -->
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+  
+      <!-- Botonos auxiliares -->
+      <ion-buttons slot="end">
+        
+        <ion-button (click)="refresh()">
+          <ion-icon name="refresh"></ion-icon>
+        </ion-button>
+
+        <!-- añadir variable -->
+        <ion-button (click)="onClickAdd()">
+          <ion-icon name="add-outline"></ion-icon>
+        </ion-button>
+
+      </ion-buttons>
+
+      <ion-title>VariablesList</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+
+    <ion-searchbar (ionChange)="onChangeSearchText($event)" placeholder="Variable" debounce=800>
+
+    </ion-searchbar>
+
+    <!-- Listado de variables  -->
+
+    <ion-item-sliding *ngFor="let variable of appVariablesGetDto">
+
+      <ion-item (click)="presentActionSheet(variable)">
+        <ion-label>
+
+          <p>  Code: {{ variable.code }}  </p>
+          <p>  Descripción: {{ variable.description }} </p>
+
+        </ion-label>
+      </ion-item>
+
+      
+      <ion-item-options side="end">
+        <ion-item-option color="primary" (click)="presentActionSheet(variable)">
+          <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+
+    </ion-item-sliding>
+  </ion-list>
+
+</ion-content>

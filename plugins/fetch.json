@@ -1,0 +1,153 @@
+{
+  "cordova-plugin-ionic": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-ionic"
+    },
+    "is_top_level": true,
+    "variables": {
+      "APP_ID": "--app-id=\"53752bfd\" \\",
+      "CHANNEL_NAME": "chappserviceui",
+      "UPDATE_METHOD": "background",
+      "MAX_STORE": "2",
+      "MIN_BACKGROUND_DURATION": "30",
+      "UPDATE_API": "https://api.ionicjs.com"
+    }
+  },
+  "cordova-plugin-camera": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-camera@^4.1.0"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-file": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-file@^6.0.2"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-file-transfer": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-file-transfer@1.7.1"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-filepath": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-filepath@1.5.8"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-actionsheet": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-actionsheet"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-ionic-webview": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-ionic-webview@^4.0.0"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-whitelist": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-whitelist@^1.3.3"
+    },
+    "is_top_level": false,
+    "variables": {}
+  },
+  "cordova-plugin-statusbar": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-statusbar@2.4.2"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-device": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-device@2.0.2"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-splashscreen": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-splashscreen@5.0.2"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-ionic-keyboard": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-ionic-keyboard@^2.0.5"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-image-picker": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-image-picker"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-telerik-imagepicker": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-telerik-imagepicker@^2.3.3"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-base64-to-gallery": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-base64-to-gallery"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-camera-preview": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-camera-preview@^0.12.0"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-sqlite-storage": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-sqlite-storage"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-network-information": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-network-information"
+    },
+    "is_top_level": true,
+    "variables": {}
+  }
+}

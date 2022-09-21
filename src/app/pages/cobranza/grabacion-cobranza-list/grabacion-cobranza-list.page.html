@@ -1,0 +1,99 @@
+<ion-header no-border>
+  <ion-toolbar color='primary'>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-back-button defaultHref="/" text=""></ion-back-button>
+
+    </ion-buttons>
+    <ion-buttons slot="end">
+
+      <ion-button (click)="onClickAdd()">
+
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+
+
+
+    <ion-title text-capitalize>Grabacion Cobranzas </ion-title>
+  </ion-toolbar>
+
+  <ion-item>
+
+    <ion-label>
+      <h3 text-capitalize>{{cobGeneralCobranzaDto.idCliente}}-{{cobGeneralCobranzaDto.nombreCliente}}</h3>
+      <h3 text-capitalize> Total Recibo: {{cobGeneralCobranzaDto.montoTransaccionString}} Pendiente
+        {{cobGeneralCobranzaDto.totalDetalleCobradoString}}</h3>
+      <p> Doc: {{cobGeneralCobranzaDto.documento}} </p>
+
+    </ion-label>
+  </ion-item>
+  <ion-row>
+
+    <ion-col *ngIf="showLoading">
+      <div class="ion-text-center">
+
+        <h3>Por favor,espere...</h3>
+
+      </div>
+    </ion-col>
+
+  </ion-row>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+
+    <ion-item-sliding #slidingItem *ngFor="let item of cobGrabacionCobranzaDto">
+      <ion-item detail>
+        <ion-label>
+          <h3 text-capitalize> {{ item.transaccion }}-{{ item.documento }}</h3>
+          <p>Monto:{{ item.montoMostrar }}</p>
+          <p *ngIf="item.cotizacion.length==0">Afecta:{{ item.rpdoc }} </p>
+          <p *ngIf="item.cotizacion.length>0">Cot:{{ item.cotizacion }}</p>
+          <p>Documento Sap:{{ item.documentoSap }} </p>
+
+        </ion-label>
+        <div *ngIf="item.pagoCorrespondeIva">
+          <ion-label>Pago Iva:</ion-label>
+          <ion-checkbox slot="end" [(ngModel)]="item.pagoCorrespondeIva"></ion-checkbox>
+        </div>
+
+
+      </ion-item>
+      <!--     <ion-item-options side="start">
+        <ion-item-option color="primary" (click)="onClickDetail(item)" >
+    
+          <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+        </ion-item-option>
+    
+        <ion-item-option color="danger" (click)="onClickDelete(item,slidingItem)" >
+    
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options> -->
+      <ion-item-options side="end">
+        <!--  <ion-item-option color="primary" (click)="onGotoRetencionesList(item)" >
+          <ion-icon slot="icon-only" name="document-text-outline"></ion-icon>
+         
+        </ion-item-option> -->
+        <ion-item-option color="primary" (click)="presentActionSheet(item)">
+
+          <ion-icon slot="icon-only" name="push-outline"></ion-icon>
+        </ion-item-option>
+
+
+      </ion-item-options>
+
+    </ion-item-sliding>
+
+
+
+
+
+  </ion-list>
+
+</ion-content>

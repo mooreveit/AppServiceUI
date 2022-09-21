@@ -1,0 +1,123 @@
+<ion-header>
+  <ion-toolbar color='primary'>
+
+    <!-- Boton principal del menu -->
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <!-- Botonos auxiliares -->
+    <ion-buttons slot="end">
+
+      <ion-button (click)="refresh()">
+        <ion-icon name="refresh"></ion-icon>
+      </ion-button>
+
+      <!-- añadir variable -->
+      <ion-button (click)="onClickAdd()">
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
+
+    </ion-buttons>
+
+    <ion-title>Conversion Unidades</ion-title>
+
+  </ion-toolbar>
+
+
+</ion-header>
+
+<ion-content>
+
+  <form [formGroup]="form" novalidate>
+
+    <div>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>
+            Desde
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <!-- Id Unidad desde Oculto-->
+          <ion-item *ngIf="false">
+            <ion-label position="fixed">Id Unidad desde</ion-label>
+            <ion-input type="number" formControlName="appUnitDesdeId"></ion-input>
+          </ion-item>
+          <ion-item>
+
+            <ion-input type="text" formControlName="unidadDesde" placeholder="Buscar unidad de medida..." readonly>
+            </ion-input>
+            <ion-button (click)="onBuscarUnidadDesde()">
+              <ion-icon name="search-outline"></ion-icon>
+            </ion-button>
+          </ion-item>
+
+        </ion-card-content>
+      </ion-card>
+
+
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>
+            Hasta
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <!-- Id Unidad desde Oculto-->
+          <ion-item *ngIf="false">
+            <ion-label position="fixed">Id Unidad desde</ion-label>
+            <ion-input type="number" formControlName="appUnitHastaId"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input type="text" formControlName="unidadHasta" placeholder="Buscar unidad de medida..." readonly>
+            </ion-input>
+            <ion-button (click)="onBuscarUnidadHasta()">
+              <ion-icon name="search-outline"></ion-icon>
+            </ion-button>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+
+
+
+  </form>
+
+
+
+
+
+  <ion-list>
+
+
+
+    <!-- Listado de variables  -->
+
+    <ion-item-sliding *ngFor="let item of appTemplateConversionUnitGetDto">
+
+      <ion-item (click)="presentActionSheet(item)">
+        <ion-label>
+
+          <p> Unidad Desde:({{ item.appUnitIdSinceGetDto.code }}) {{ item.appUnitIdSinceGetDto.description4 }} </p>
+          <p> Unidad Hasta:({{ item.appUnitIdUntilGetDto.code }}) {{ item.appUnitIdUntilGetDto.description4 }}</p>
+          <p> Formula: {{ item.formula }} </p>
+          <p> {{ item.description }} {{ item.value }} </p>
+          <p> Minimo: {{ item.min }} Maximo: {{ item.max }} </p>
+
+
+
+        </ion-label>
+      </ion-item>
+
+
+      <ion-item-options side="end">
+        <ion-item-option color="primary" (click)="presentActionSheet(item)">
+          <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,105 @@
+<ion-header>
+  <ion-toolbar color='primary'>
+   
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-back-button defaultHref="/" text=""></ion-back-button>
+
+    </ion-buttons>
+
+
+    <ion-title>{{titulo}}</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+
+  <form [formGroup]="form" novalidate>
+
+
+
+    <ion-card class='no-padding'>
+
+      <ion-card-subtitle>
+        <br>
+       <!--  <ion-item>
+          <a (click)="openLink()">
+            <ion-icon name="print-outline" style="font-size:4.0em;"></ion-icon>
+          </a>
+   
+        </ion-item> -->
+        <ion-item>
+          <ion-button (click)="openLink()" size="large">
+            <!-- <ion-icon name="print-outline" ></ion-icon> -->
+            <i class="far fa-file-pdf"></i>
+          </ion-button>
+          <ion-button (click)="openLinkWord()" size="large">
+            <!-- <ion-icon name="print-outline" ></ion-icon> -->
+            <i class="far fa-file-word"></i>
+          </ion-button>
+          <ion-button (click)="openLinkExcel()" size="large">
+            <!-- <ion-icon name="print-outline" ></ion-icon> -->
+            <i class="fas fa-file-excel"></i>
+            
+          </ion-button>
+          
+        </ion-item>
+      </ion-card-subtitle>
+      <br>
+      <ion-card-content class='no-padding'>
+        <ion-item>
+
+          <ion-label style="padding-left:20px;">
+
+
+            <p class="bold">
+              Cotizacion: {{ cotizacion.cotizacion }}
+
+            </p>
+            <p class="bold">
+              Cliente: {{cotizacion.mtrClienteDto.descripcion}}
+            </p>
+          </ion-label>
+        </ion-item>
+
+
+        <ion-item>
+          <ion-label>flagTotal?</ion-label>
+          <ion-checkbox formControlName="flagTotal"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>flagFormasCaja?</ion-label>
+          <ion-checkbox formControlName="flagFormasCaja"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>flagIva?</ion-label>
+          <ion-checkbox formControlName="flagIva" (ngModelChange)="imprimirIvaChanged($event)"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>observaciones?</ion-label>
+          <ion-checkbox formControlName="observaciones"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>imprimirUsd?</ion-label>
+          <ion-checkbox formControlName="imprimirUsd" (ngModelChange)="imprimirUsdChanged($event)"></ion-checkbox>
+        </ion-item>
+      </ion-card-content>
+
+    </ion-card>
+
+
+
+
+
+
+
+
+
+
+
+  </form>
+
+</ion-content>

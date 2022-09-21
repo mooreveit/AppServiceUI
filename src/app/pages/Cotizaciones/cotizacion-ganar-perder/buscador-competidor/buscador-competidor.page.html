@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Buscar-Competidor</ion-title>
+  </ion-toolbar>
+
+  <ion-item>
+    <ion-searchbar (ionChange)="onChangeSearchText($event)" placeholder="Competidor"
+      debounce=800></ion-searchbar>
+  </ion-item>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-list>
+    
+    <ion-item *ngFor="let competidor of appCompetidorGetDto" (click)="SelectCompetidor(competidor)">
+      <ion-label>
+        <p> {{ competidor.nombre }}  </p>
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>

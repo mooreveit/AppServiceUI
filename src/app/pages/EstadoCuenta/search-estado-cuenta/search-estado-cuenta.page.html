@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Buscar Documento</ion-title>
+    <ion-buttons slot="end">
+
+      <ion-button (click)="Salir($event)">
+        <ion-icon name="close-circle-outline"></ion-icon>
+
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-row>
+
+    <ion-searchbar (ionChange)="onChangeSearchDocumento($event)" placeholder="Documento" debounce=800></ion-searchbar>
+
+
+
+
+  </ion-row>
+  <ion-row>
+
+    <ion-col *ngIf="showLoading">
+      <div class="ion-text-center">
+
+        <h3>Cargando datos......</h3>
+
+      </div>
+    </ion-col>
+
+  </ion-row>
+
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let item of estadoCuentaDto" (click)="SelectDocumento(item)">
+      <ion-label>
+
+        <h3 text-capitalize> Documento:{{ item.rpdct }}-{{ item.rpdoc }}-{{ item.id }}</h3>
+        <p>Saldo:{{ item.saldoString }}</p>
+        <p>Base:{{ item.baseImponibleString }}</p>
+        <p>Iva:{{ item.ivaString }}</p>
+        <p>Total:{{ item.montoOriginalString }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll threshold='15%' (ionInfinite)=loadMore($event)>
+    <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="Cargando...">
+
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

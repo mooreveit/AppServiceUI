@@ -1,0 +1,105 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-button color="dark" (click)="closeModal()">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Buscador de Productos</ion-title>
+    </ion-toolbar>    
+</ion-header>
+
+<ion-content>   
+    
+    <ion-grid>
+        <ion-row>
+            <ion-col size-lg="12" size-md="12" size-sm="12" size="12">
+                <ion-item *ngFor="let variable of listaVariablesAgrupado" >
+                  
+                    <ion-label  style="font-size: 14px;padding: 0px;"  [ngStyle]="variable.marcado == true ? marcado() : desmarcado()">
+                            {{variable.variableDescription}}
+                    </ion-label>
+                    <ion-select  placeholder="Select Variable" (ionChange)="onChangeVariableId($event)"  >
+                            
+                        <ion-select-option *ngFor="let item of variable.appVariableSearchGetDto" [value]="item" class="ion-text-wrap">
+                    
+                            {{item.searchText}}
+                    
+                        </ion-select-option>
+                
+                    </ion-select>
+                    
+                </ion-item>
+
+            </ion-col >
+            <ion-col size-lg="12" size-md="12" size-sm="12" size="12">
+                <ion-list>
+                    
+                    <ion-item *ngFor="let producto of listaProductos" (click)="onSelect(producto)">
+                            
+                        <img src="{{producto.link}}">
+                        
+                        <ion-item class="item item-text-wrap">
+                         <p>{{ producto.description1 }} Precio: {{producto.unitPrice}} {{producto.productionUnitGetDto.code}} - {{ producto.code }}</p>
+                        </ion-item>
+                     
+                    </ion-item>
+
+                
+                </ion-list>
+            </ion-col>
+
+
+        </ion-row>
+    </ion-grid>
+
+    <ion-grid>
+        <ion-row>
+           
+            <ion-col >
+                 <!-- Resultado de la Busqueda -->
+                <ion-list>
+                    
+                    <ion-item *ngFor="let producto of listaProductos" (click)="onSelect(producto)">
+                            
+                        <img src="{{producto.link}}">
+                        
+                        <ion-item class="item item-text-wrap">
+                         <p>{{ producto.description1 }} Precio: {{producto.unitPrice}} {{producto.productionUnitGetDto.code}} - {{ producto.code }}</p>
+                        </ion-item>
+                     
+                    </ion-item>
+
+                
+                </ion-list>
+            </ion-col>
+        </ion-row>
+       <!--  <ion-row>
+            <ion-col>
+                <ion-item>
+    
+                    <ion-label style="font-weight: bold;">Selecione Criterios de Busqueda..</ion-label>
+                
+                </ion-item>
+            
+                <ion-list>
+            
+                    <ion-item *ngFor="let variable of arrayVariables; let ndx= index" (click)="onSelectListItem(ndx, variable)" >
+                  
+                        <ion-label  style="font-size: 14px;padding: 0px;"  [ngStyle]="variable.marcado == true ? marcado() : desmarcado()">
+                                {{variable.objeto.searchText}}
+                        </ion-label>
+                        
+                    </ion-item>
+            
+                </ion-list>
+            </ion-col>
+            
+        </ion-row> -->
+
+    </ion-grid>
+  
+
+   
+
+</ion-content>

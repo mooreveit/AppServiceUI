@@ -1,0 +1,93 @@
+<ion-header>
+    <ion-toolbar color='primary'>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+            <ion-back-button defaultHref="/" text=""></ion-back-button>
+      
+          </ion-buttons>
+         <!-- Botonos auxiliares -->
+         <ion-buttons *ngIf="cotizacion.permiteAdicionarDetalle" slot="end">
+       
+            <!-- añadir cotizacion -->
+            <ion-button (click)="add()">
+            <ion-icon name="add-outline"></ion-icon>
+            </ion-button>
+      </ion-buttons>
+        
+
+        <ion-title>Productos de la Cotización</ion-title>
+
+    </ion-toolbar>
+   
+    <ion-row>
+
+        <ion-col *ngIf="showLoading">
+          <div class="ion-text-center">
+    
+            <h3>Cargando Cotizacion.........</h3>
+    
+          </div>
+        </ion-col>
+    
+      </ion-row>
+</ion-header>
+
+<ion-content>
+    
+
+
+    <!--
+    <app-cotizacion-resumen [cotizacion]="cotizacion"></app-cotizacion-resumen>
+    -->
+    <ion-list>
+
+        <ion-item-sliding *ngFor="let item of detalleItems">
+
+            <ion-item (click)="presentActionSheet(item)">
+            
+                
+                <img src="{{item.appProductsGetDto.link}}">
+               
+                <ion-label style="padding-left:20px;">
+                    <p  class="ion-text-wrap">
+                        {{item.cotizacion}} 
+                      </p>
+                    <p class="ion-text-wrap"> {{ item.nombreComercialProducto }} </p>
+                    
+                    <p> Cantidad: {{ item.cantidadSolicitada }} </p>
+                    <p> Precio US$: {{ gs.maskFloat(item.precioUsd,4) }} </p>
+                    <p> Total US$: {{ gs.maskFloat(item.totalUsd) }} </p>
+                    <p> Precio Bs.: {{ gs.maskFloat(item.precio) }} </p>
+                    <p> Total Bs.: {{ gs.maskFloat(item.total) }} </p>
+                    <p> Precio Lista US$: {{gs.maskFloat(item.unitPriceConverted,4)}}</p>
+                </ion-label>
+            </ion-item>
+
+            <!-- Menu de acciones -->
+            <ion-item-options side="end">
+                <ion-item-option color="primary" (click)="presentActionSheet(item)">
+                    <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+                </ion-item-option>
+            </ion-item-options>
+            
+        </ion-item-sliding>
+
+
+
+        
+    </ion-list>
+   
+    
+
+    <!-- Add Item -->
+  
+   <!--  <div *ngIf="cotizacion.permiteAdicionarDetalle">
+        <ion-fab    style="z-index: 100;" color="white" vertical="bottom" horizontal="end" slot="fixed">
+            <ion-fab-button (click)="add()">
+                <ion-icon name="add-outline"></ion-icon>
+            </ion-fab-button>
+        </ion-fab>
+    </div> -->
+
+
+</ion-content>

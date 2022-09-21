@@ -1,0 +1,112 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>repeticiones</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<!--   <div>
+    <table class="dcf-table dcf-table-responsive dcf-table-bordered dcf-table-striped dcf-w-100%">
+      <thead>
+        <tr>
+          <th scope="col"><input placeholder="Orden"  [ngModel]="orden" (ngModelChange)="ordenChanged($event)"/></th>
+          <th scope="col">Fecha</th>
+          <th scope="col"><input placeholder="Producto"  [ngModel]="nombreProducto" (ngModelChange)="nombreProductoChanged($event)"/></th>
+          <th scope="col"><input placeholder="Nombre Forma"  [ngModel]="nombreForma" (ngModelChange)="nombreFormaChanged($event)"/></th>
+          <th scope="col"><input placeholder="# Partes"  [ngModel]="partes" (ngModelChange)="partesChanged($event)"/></th>
+          <th scope="col"><input placeholder="# Tintas"  [ngModel]="tintas" (ngModelChange)="tintasChanged($event)"/></th>
+          <th scope="col"><input placeholder="Basica"  [ngModel]="basica" (ngModelChange)="basicaChanged($event)"/></th>
+          <th scope="col"><input placeholder="Opuesta"  [ngModel]="opuesta" (ngModelChange)="opuestaChanged($event)"/></th>
+          <th scope="col">Parte 1</th>
+          <th scope="col">Parte 2</th>
+          <th scope="col">Parte 3</th>
+          <th scope="col">Parte 4</th>
+          <th scope="col">Parte 5</th>
+        
+        </tr>
+      </thead>basica
+      <tbody>
+        <tr *ngFor="let item of this.appOrdenProductoRepeticionGetDto" >
+          <th scope="row">{{item.orden}}</th>
+          <td data-label="Fecha">{{item.fecha}}</td>
+          <td data-label="Producto">{{item.nombreProducto}}</td>
+          <td data-label="Nombre Forma">{{item.nombreForma}}</td>
+          <td data-label="# Partes">{{item.partesFormula}}</td>
+          <td data-label="# Tintas">{{item.cantTintas}}</td>
+          <td data-label="Basica">{{item.basicaHumano}}</td>
+          <td data-label="Opuesta">{{item.opuestaHumano}}</td>
+          <td data-label="Parte 1">{{item.papelPrimeraParte}}</td>
+          <td data-label="Parte 2">{{item.papelSegundaParte}}</td>
+          <td data-label="Parte 3">{{item.papelTerceraParte}}</td>
+          <td data-label="Parte 4">{{item.papelCuartaParte}}</td>
+          <td data-label="Parte 5">{{item.papelQuintaParte}}</td>
+         
+        </tr>
+
+      </tbody>
+    </table>
+   </div> -->
+   <ion-item>
+   
+    <ion-col>
+        <ion-label>Partes:</ion-label>
+        <ion-select  (ionChange)="partesChanged($event)" >
+        <ion-select-option *ngFor="let item of cantidadPartes" [value]="item">{{item.cantidad}}</ion-select-option>
+    </ion-select>
+    </ion-col>
+    <ion-col>
+      <ion-label>Tintas:</ion-label>
+      <ion-select  (ionChange)="tintasChanged($event)" >
+      <ion-select-option *ngFor="let item of cantidadTintas" [value]="item">{{item.cantidad}}</ion-select-option>
+  </ion-select>
+  </ion-col>
+  </ion-item>
+   <div>
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+      <thead>
+        <tr>
+          <th>Orden</th>
+          <th>Fecha</th>
+          <th>Producto</th>
+          <th>Nombre Forma</th>
+          <th>Partes</th>
+          <th>Tintas</th>
+          <th >Basica</th>
+          <th >Opuesta</th>
+          <th >Parte 1</th>
+          <th>Parte 2</th>
+          <th >Parte 3</th>
+          <th>Parte 4</th>
+          <th >Parte 5</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of this.appOrdenProductoRepeticionGetDto" >
+          <th>{{item.orden}}</th>
+          <td>{{item.fecha}}</td>
+          <td>{{item.nombreProducto}}</td>
+          <td>{{item.nombreForma}}</td>
+          <td>{{item.partesFormula}}</td>
+          <td>{{item.cantTintas}}</td>
+          <td>{{item.basicaHumano}}</td>
+          <td>{{item.opuestaHumano}}</td>
+          <td>{{item.papelPrimeraParte}}</td>
+          <td>{{item.papelSegundaParte}}</td>
+          <td>{{item.papelTerceraParte}}</td>
+          <td>{{item.papelCuartaParte}}</td>
+          <td>{{item.papelQuintaParte}}</td>
+         
+        </tr>
+
+
+      </tbody>
+      <tfoot>
+        <tr>
+          <th><input type="text" placeholder="Search ID" name="search-id"/></th>
+          <th><input type="text" placeholder="Search first name" name="search-first-name"/></th>
+          <th><input type="text" placeholder="Search last name" name="search-last-name"/></th>
+        </tr>
+      </tfoot>
+    </table>
+   </div>
+</ion-content>

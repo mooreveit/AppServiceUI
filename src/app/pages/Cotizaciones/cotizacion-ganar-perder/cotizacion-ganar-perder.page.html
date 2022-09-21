@@ -1,0 +1,49 @@
+<ion-header>
+    <ion-toolbar color='primary'>
+        <ion-buttons slot="start">            
+            <ion-back-button defaultHref="/" text=""></ion-back-button>            
+        </ion-buttons>
+        <ion-title>Ganar-Perder</ion-title>
+    </ion-toolbar>
+   
+
+</ion-header>
+
+<ion-content>    
+    
+    <!-- Label para mostrar nombre del vendedor  -->
+    <ion-item>
+        <ion-label>
+            Cotización: {{ cotizacion.cotizacion }}
+            <br />
+            <br />
+            Vendedor: {{ cotizacion.mtrVendedorDto.nombre }}
+            <ion-input type="text" *ngIf="false" formControlName="vendedor"></ion-input>
+        </ion-label>
+    </ion-item>
+
+    <ion-list>            
+
+        <!-- Lista de productos asociada a la cotizacion -->           
+        <ion-item *ngFor="let detail of appDetailQuotesGetDto" (click)="editItem(detail)">
+        
+                <ion-card style="width:100%;">
+                
+                    <ion-card-content *ngIf="detail.idEstatus ==2"   >
+                        <p> Producto: {{ detail.producto}} </p>
+                        <p> Nombre Producto: {{ detail.nombreComercialProducto }} </p>
+                        <p> Cantidad: {{ detail.cantidad }} </p>  
+                        <p> Status: {{ detail.idEstatus }} </p>  
+                         
+                        
+
+                                                    
+                    </ion-card-content>
+
+            </ion-card>           
+
+        </ion-item>
+
+    </ion-list> 
+
+</ion-content>
